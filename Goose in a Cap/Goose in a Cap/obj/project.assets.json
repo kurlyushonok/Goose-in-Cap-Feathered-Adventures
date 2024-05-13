@@ -7537,11 +7537,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Оля\\RiderProjects\\Goose in a Cap\\Goose in a Cap\\Goose in a Cap.csproj",
+      "projectUniqueName": "C:\\Users\\Оля\\Documents\\GitHub\\Goose-in-a-Cap-Feathered-Adventures\\Goose in a Cap\\Goose in a Cap\\Goose in a Cap.csproj",
       "projectName": "Goose in a Cap",
-      "projectPath": "C:\\Users\\Оля\\RiderProjects\\Goose in a Cap\\Goose in a Cap\\Goose in a Cap.csproj",
+      "projectPath": "C:\\Users\\Оля\\Documents\\GitHub\\Goose-in-a-Cap-Feathered-Adventures\\Goose in a Cap\\Goose in a Cap\\Goose in a Cap.csproj",
       "packagesPath": "C:\\Users\\Оля\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Оля\\RiderProjects\\Goose in a Cap\\Goose in a Cap\\obj\\",
+      "outputPath": "C:\\Users\\Оля\\Documents\\GitHub\\Goose-in-a-Cap-Feathered-Adventures\\Goose in a Cap\\Goose in a Cap\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Оля\\AppData\\Roaming\\NuGet\\NuGet.Config"

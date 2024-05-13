@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7qvoeRiVpwOJNs2QK7Ep8+CsSQ5PgbYjjbsVYFweflj5qOkdRHs5SvptiB+TNwwcx93anQj0BESvuhNwMIHrvg==",
+  "dgSpecHash": "4ZleCzs4e82qNpWtpPybYiB/fYFBSZoUrgydW64F7D9NQfV0/Bo9+itw2pXEWUBv8qZwycFonOF4n7KLdbBNsQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Оля\\RiderProjects\\Goose in a Cap\\Goose in a Cap\\Goose in a Cap.csproj",
+  "projectFilePath": "C:\\Users\\Оля\\Documents\\GitHub\\Goose-in-a-Cap-Feathered-Adventures\\Goose in a Cap\\Goose in a Cap\\Goose in a Cap.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Оля\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",
     "C:\\Users\\Оля\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",
