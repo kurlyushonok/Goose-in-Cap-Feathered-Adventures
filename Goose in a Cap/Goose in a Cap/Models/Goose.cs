@@ -16,8 +16,6 @@ public class Goose
     private Texture2D _waitSprite;
     private Point _spriteSizeWait;
 
-    public Vector2 _position;
-
     public Goose(string nameRunSprite, string nameJumpSprite, string nameWaitSprite, 
         Dictionary<string, (Texture2D, Point)> sprites, Vector2 position)
     {
@@ -29,8 +27,6 @@ public class Goose
 
         _waitSprite = sprites[nameWaitSprite].Item1;
         _spriteSizeWait = sprites[nameWaitSprite].Item2;
-
-        _position = position;
 
     }
 
@@ -48,13 +44,7 @@ public class Goose
     {
         get => _waitSprite;
     }
-    
-    public Vector2 Position
-    {
-        get => _position;
-        set => _position = value;
-    }
-    
+
     public int FrameRunWidth
     {
         get => _runSprite.Width / _spriteSizeRun.X;

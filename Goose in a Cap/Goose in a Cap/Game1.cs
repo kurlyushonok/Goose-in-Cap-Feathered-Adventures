@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -7,11 +8,13 @@ namespace Goose_in_a_Cap;
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
+    public static SpriteBatch _spriteBatch;
     
     private ContentLoad _loader = new ContentLoad();
-    private Drawer _drawer = new Drawer();
-    private Controller _controller = new Controller();
+    private Drawer _drawer;
+    private Controller _controller;
+    
+    // public static event Action initializeGoose;
 
     public Game1()
     {
@@ -32,14 +35,19 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        _drawer.Background = Content.Load<Texture2D>("background_sprite");
+        
+        _drawer = new Drawer(_spriteBatch)
+        {
+            Background = Content.Load<Texture2D>("background_sprite")
+        };
+        _controller = new Controller(_drawer, _loader);
         
         var baseRun = Content.Load<Texture2D>("goose_run_sprite");
         _loader.LoadSprite(baseRun, new Point(2, 1), "run_base");
         var baseJump = Content.Load<Texture2D>("goose_jump");
         _loader.LoadSprite(baseJump, new Point(1, 1), "jump_base");
         
-        _controller.InitializeCharacter(_loader);
+        _controller.InitializeCharacter();
     }
 
     protected override void Update(GameTime gameTime)
@@ -48,8 +56,7 @@ public class Game1 : Game
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
         
-        _controller.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
-        _drawer._currentTime += gameTime.ElapsedGameTime.Milliseconds;
+        _drawer.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
         _controller.Update();
 
         base.Update(gameTime);
@@ -57,17 +64,7 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.White); //перенести в drawer
-        // _spriteBatch.Begin();
-        // _spriteBatch.Draw(_drawer.Background, Vector2.Zero, Color.White);
-        // _spriteBatch.Draw(_controller.CurrentCharacterSprite, _controller.Character.Position, 
-        //     new Rectangle(_controller.CurrentFrame.X * _controller.CurrentCharacterFrameSize.X, 
-        //         _controller.CurrentFrame.Y * _controller.CurrentCharacterFrameSize.Y, 
-        //         _controller.CurrentCharacterFrameSize.X,  _controller.CurrentCharacterFrameSize.Y), Color.White);
-        // _spriteBatch.End();
-        
-        _drawer.Draw(_spriteBatch, _controller);
-
+        _drawer.Draw(_controller.Race);
         base.Draw(gameTime);
     }
 }

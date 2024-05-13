@@ -8,6 +8,8 @@ public class Race
 {
     public Vector2 position = new Vector2(150, 520);
 
+    public Goose Character { get; set; }
+
     public Vector2 Position
     {
         get => position;
