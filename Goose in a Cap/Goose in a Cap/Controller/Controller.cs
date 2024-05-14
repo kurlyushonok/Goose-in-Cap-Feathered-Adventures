@@ -32,16 +32,16 @@ public class Controller
     public void InitializeCharacter()
     {
         _race.Character = ChooseGoose("run_base", "jump_base",
-            "jump_base", _loader.Sprites, _race.Position); //эта строчка заменится на отслеживание интерфейса
+            "jump_base", _loader.Sprites); //эта строчка заменится на отслеживание интерфейса
         //TODO сделать дефолтную инициализацию гуся
         
         _drawer.DrawCharacter(_race.Character);
     }
     
     private Goose ChooseGoose(string nameRunSprite, string nameJumpSprite, 
-        string nameWaitSprite, Dictionary<string, (Texture2D, Point)> sprites, Vector2 position)
+        string nameWaitSprite, Dictionary<string, (Texture2D, Point)> sprites)
     {
-        return new Goose(nameRunSprite, nameJumpSprite, nameWaitSprite, sprites, position);
+        return new Goose(nameRunSprite, nameJumpSprite, nameWaitSprite, sprites);
     }
 
     private void Jump()
@@ -56,13 +56,13 @@ public class Controller
     
         if (_flag)
         {
-            if (_race.position.Y > 270) _race.position.Y -= 20; //TODO вынести константы в Race
+            if (_race.Position.Y > _race.FlightLevel) _race.Position.Y -= _race.JumpSpeed;
             else _flag = false;
         }
     
         if (!_flag)
         {
-            if (_race.position.Y < 510) _race.position.Y += 20;
+            if (_race.Position.Y < _race.RunningLevel) _race.Position.Y += _race.JumpSpeed;
             else
             {
                 _drawer.CanLand = true;

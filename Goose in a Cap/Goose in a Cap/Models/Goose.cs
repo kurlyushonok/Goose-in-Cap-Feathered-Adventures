@@ -17,7 +17,7 @@ public class Goose
     private Point _spriteSizeWait;
 
     public Goose(string nameRunSprite, string nameJumpSprite, string nameWaitSprite, 
-        Dictionary<string, (Texture2D, Point)> sprites, Vector2 position)
+        Dictionary<string, (Texture2D, Point)> sprites)
     {
         _runSprite = sprites[nameRunSprite].Item1;
         _spriteSizeRun = sprites[nameRunSprite].Item2;
