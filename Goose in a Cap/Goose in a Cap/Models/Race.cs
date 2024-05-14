@@ -8,7 +8,7 @@ public class Race
 {
     public Vector2 Position = new Vector2(150, 520);
     private int _runningLevel = 520;
-    private int _flightLevel = 240;
+    private int _flightLevel = 200;
     private int _jumpSpeed = 20;
 
     public Goose Character { get; set; }
