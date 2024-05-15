@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Goose_in_a_Cap;
+namespace GooseInCap;
 
-public class Drawer
+public class GameDrawer
 {
     private int _currentTime;
     private Texture2D _background;
@@ -23,7 +23,7 @@ public class Drawer
     private bool _canLand;
     
     private SpriteBatch _spriteBatch;
-    public Drawer(SpriteBatch spriteBatch)
+    public GameDrawer(SpriteBatch spriteBatch)
     {
         _spriteBatch = spriteBatch;
     }
@@ -130,7 +130,7 @@ public class Drawer
         _spriteBatch.Draw(_background, Vector2.Zero,
             new Rectangle(_currentPosition, 0, 1920, 1080),
             Color.White);
-        _currentPosition += _backgroundSpeed;
+        _currentPosition += _backgroundSpeed; //при остановке игры остановить изменение
         if (_currentPosition >= 1920) _currentPosition = 0;
     }
 }

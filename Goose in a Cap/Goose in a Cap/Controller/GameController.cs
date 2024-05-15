@@ -3,18 +3,18 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Goose_in_a_Cap;
+namespace GooseInCap;
 
-public class Controller
+public class GameController
 {
     private bool _flag;
     private Race _race = new Race();
-    private Drawer _drawer;
+    private GameDrawer _gameDrawer;
     private ContentLoad _loader;
 
-    public Controller(Drawer drawer, ContentLoad loader)
+    public GameController(GameDrawer gameDrawer, ContentLoad loader)
     {
-        _drawer = drawer;
+        _gameDrawer = gameDrawer;
         _loader = loader;
     }
 
@@ -35,7 +35,7 @@ public class Controller
             "jump_base", _loader.Sprites); //эта строчка заменится на отслеживание интерфейса
         //TODO сделать дефолтную инициализацию гуся
         
-        _drawer.DrawCharacter(_race.Character);
+        _gameDrawer.DrawCharacter(_race.Character);
     }
     
     private Goose ChooseGoose(string nameRunSprite, string nameJumpSprite, 
@@ -48,10 +48,10 @@ public class Controller
     {
         if ((Keyboard.GetState().IsKeyDown(Keys.Up) || 
              Keyboard.GetState().IsKeyDown(Keys.Space) ||
-             Keyboard.GetState().IsKeyDown(Keys.W)) && _drawer.CanJump)
+             Keyboard.GetState().IsKeyDown(Keys.W)) && _gameDrawer.CanJump)
         {
             _flag = true;
-            _drawer.CanJump = false;
+            _gameDrawer.CanJump = false;
         }
     
         if (_flag)
@@ -65,8 +65,8 @@ public class Controller
             if (_race.Position.Y < _race.RunningLevel) _race.Position.Y += _race.JumpSpeed;
             else
             {
-                _drawer.CanLand = true;
-                _drawer.CanJump = true;
+                _gameDrawer.CanLand = true;
+                _gameDrawer.CanJump = true;
             }
         }
     }
@@ -74,6 +74,6 @@ public class Controller
     private void Run()
     {
         //бежать, когда началась игра
-        _drawer.CanRun = true;
+        _gameDrawer.CanRun = true;
     }
 }

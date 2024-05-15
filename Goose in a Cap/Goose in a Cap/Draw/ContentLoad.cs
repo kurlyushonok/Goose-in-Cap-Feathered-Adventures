@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Goose_in_a_Cap;
+namespace GooseInCap;
 
 public class ContentLoad
 {

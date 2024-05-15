@@ -3,16 +3,17 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Goose_in_a_Cap;
+namespace GooseInCap;
 
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     public static SpriteBatch _spriteBatch;
+    private State _state = State.Game;
     
     private ContentLoad _loader = new ContentLoad();
-    private Drawer _drawer;
-    private Controller _controller;
+    private GameDrawer _gameDrawer;
+    private GameController _gameController;
     
     // public static event Action initializeGoose;
 
@@ -36,35 +37,45 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         
-        _drawer = new Drawer(_spriteBatch)
+        _gameDrawer = new GameDrawer(_spriteBatch)
         {
             Background = Content.Load<Texture2D>("background_sprite")
         };
-        _controller = new Controller(_drawer, _loader);
+        _gameController = new GameController(_gameDrawer, _loader);
         
         var baseRun = Content.Load<Texture2D>("goose_run_sprite");
         _loader.LoadSprite(baseRun, new Point(2, 1), "run_base");
         var baseJump = Content.Load<Texture2D>("goose_jump");
         _loader.LoadSprite(baseJump, new Point(1, 1), "jump_base");
         
-        _controller.InitializeCharacter();
+        _gameController.InitializeCharacter();
     }
 
     protected override void Update(GameTime gameTime)
     {
+        _gameDrawer.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
+        switch (_state) //TODO добавить другие состояния
+        {
+            case State.Game:
+                _gameController.Update();
+                break;
+        }
+        
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-        
-        _drawer.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
-        _controller.Update();
 
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        _drawer.Draw(_controller.Race);
+        switch (_state)
+        {
+            case State.Game:
+                _gameDrawer.Draw(_gameController.Race);
+                break;
+        }
         base.Draw(gameTime);
     }
 }

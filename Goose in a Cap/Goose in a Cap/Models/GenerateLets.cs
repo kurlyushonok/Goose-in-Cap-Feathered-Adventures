@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SharpDX.Direct3D11;
 
-namespace Goose_in_a_Cap;
+namespace GooseInCap;
 
 public class GenerateLets
 {

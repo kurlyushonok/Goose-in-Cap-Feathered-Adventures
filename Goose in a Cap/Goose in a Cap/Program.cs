@@ -1,2 +1,2 @@
-﻿using var game = new Goose_in_a_Cap.Game1();
+﻿using var game = new GooseInCap.Game1();
 game.Run();
