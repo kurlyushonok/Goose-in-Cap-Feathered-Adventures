@@ -109,6 +109,18 @@
 /processorParam:TextureFormat=Color
 /build:flowers_big.png
 
+#begin flowers_small.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:flowers_small.png
+
 #begin goose_jump.png
 /importer:TextureImporter
 /processor:TextureProcessor

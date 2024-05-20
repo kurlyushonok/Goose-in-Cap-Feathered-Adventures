@@ -12,7 +12,7 @@ public class Race
 {
     public Vector2 Position = new Vector2(150, 520);
     private int _runningLevel = 520;
-    private int _flightLevel = 200;
+    private int _flightLevel = 150;
     private int _jumpSpeed = 22;
 
     public Goose Character { get; set; }

@@ -25,7 +25,7 @@ public class GameDrawer
     private bool _canLand;
 
 
-    private LetGrandmother _let; //тестовое, потом убрать
+    private Let _let; //тестовое, потом убрать
     
     private SpriteBatch _spriteBatch;
     private ContentManager _content;
@@ -147,11 +147,15 @@ public class GameDrawer
     private void DrawLet()
     {
         if (_let == null) _let = _letsGenerator.GenerateLet();
-        var letPosition = new Vector2(_let.CurrentPosition, 600);
+        var letPosition = new Vector2(_let.CurrentPosition, _let.Level);
         _spriteBatch.Draw(_let.Sprite, letPosition, 
             new Rectangle(0, 0, _let.Sprite.Width, _let.Sprite.Height),
             Color.White);
         _let.CurrentPosition -= _environmentSpeed;
-        if (_let.CurrentPosition <= (0 - _let.Sprite.Width)) _let.CurrentPosition = 1920;
+        if (_let.CurrentPosition <= (0 - _let.Sprite.Width))
+        {
+            _let.CurrentPosition = 1920;
+            _let = null;
+        }
     }
 }
