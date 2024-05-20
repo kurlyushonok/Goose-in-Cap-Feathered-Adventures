@@ -11,6 +11,7 @@ public class GameController
     private Race _race = new Race();
     private GameDrawer _gameDrawer;
     private ContentLoad _loader;
+    private bool _isRunning; //игра запущена
 
     public GameController(GameDrawer gameDrawer, ContentLoad loader)
     {

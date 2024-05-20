@@ -16,6 +16,7 @@ public class Race
     private int _jumpSpeed = 22;
 
     public Goose Character { get; set; }
+    public int Score { get; set; }
 
     public int RunningLevel => _runningLevel;
     public int FlightLevel => _flightLevel;

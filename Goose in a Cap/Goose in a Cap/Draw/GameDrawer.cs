@@ -158,4 +158,9 @@ public class GameDrawer
             _let = null;
         }
     }
+
+    private void DrawCoin()
+    {
+        
+    }
 }
