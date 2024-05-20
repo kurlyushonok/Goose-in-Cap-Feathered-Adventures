@@ -11,7 +11,7 @@ public class GameDrawer
     private int _currentTime;
     private Texture2D _background;
     
-    private int _environmentSpeed = 10;
+    private int _environmentSpeed = 12;
     private Point _currentFrame = new Point(0, 0);
     private int _runPeriod = 80;
     private Texture2D _currentCharacterSprite;
@@ -25,7 +25,7 @@ public class GameDrawer
     private bool _canLand;
 
 
-    private Let _let; //тестовое, потом убрать
+    private Let _let;
     
     private SpriteBatch _spriteBatch;
     private ContentManager _content;
@@ -140,7 +140,7 @@ public class GameDrawer
         _spriteBatch.Draw(_background, Vector2.Zero,
             new Rectangle(_backgroundPosition, 0, 1920, 1080),
             Color.White);
-        _backgroundPosition += _environmentSpeed; //при остановке игры остановить изменение
+        _backgroundPosition += _environmentSpeed; //TODO при остановке игры остановить изменение
         if (_backgroundPosition >= 1920) _backgroundPosition = 0;
     }
 
