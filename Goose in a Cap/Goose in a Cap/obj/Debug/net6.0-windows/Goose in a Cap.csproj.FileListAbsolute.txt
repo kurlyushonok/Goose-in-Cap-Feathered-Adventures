@@ -79,3 +79,4 @@ C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a 
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\obj\Debug\net6.0-windows\Goose in a Cap.pdb
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\obj\Debug\net6.0-windows\Goose in a Cap.genruntimeconfig.cache
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\obj\Debug\net6.0-windows\ref\Goose in a Cap.dll
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\grandmother.xnb

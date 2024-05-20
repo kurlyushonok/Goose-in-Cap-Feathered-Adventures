@@ -37,7 +37,7 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         
-        _gameDrawer = new GameDrawer(_spriteBatch)
+        _gameDrawer = new GameDrawer(_spriteBatch, Content)
         {
             Background = Content.Load<Texture2D>("background_sprite")
         };

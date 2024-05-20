@@ -1,22 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using SharpDX.Direct3D11;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GooseInCap;
 
 public class GenerateLets
 {
-    private List<Texture2D> _lets = new List<Texture2D>();
+    private static List<LetGrandmother> _lets = new List<LetGrandmother>();
     private Random _rnd = new Random();
+    private static ContentManager _content;
 
-    public void LoadLet(Texture2D let)
+    public GenerateLets(ContentManager content)
     {
-        _lets.Add(let);
+        _content = content;
     }
 
-    public Texture2D GenerateLet()
+    public void LoadLet()
     {
-        var index = _rnd.Next(0, _lets.Count);
+        _lets.Add(new LetGrandmother(_content));
+    }
+
+    public LetGrandmother GenerateLet()
+    {
+        var index = _rnd.Next(0, _lets.Count - 1);
         return _lets[index];
     }
 }

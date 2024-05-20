@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -10,22 +11,30 @@ public class GameDrawer
     private int _currentTime;
     private Texture2D _background;
     
-    private int _backgroundSpeed = 10;
+    private int _environmentSpeed = 10;
     private Point _currentFrame = new Point(0, 0);
     private int _runPeriod = 80;
     private Texture2D _currentCharacterSprite;
     private Point _currentCharacterFrameSize;
     private Point _currentCharacterSpriteSize;
-    private int _currentPosition;
+    private int _backgroundPosition;
+    private GenerateLets _letsGenerator;
 
     private bool _canRun;
     private bool _canJump = true;
     private bool _canLand;
+
+
+    private LetGrandmother _let; //тестовое, потом убрать
     
     private SpriteBatch _spriteBatch;
-    public GameDrawer(SpriteBatch spriteBatch)
+    private ContentManager _content;
+    public GameDrawer(SpriteBatch spriteBatch, ContentManager content)
     {
         _spriteBatch = spriteBatch;
+        _content = content;
+        _letsGenerator = new GenerateLets(content);
+        _letsGenerator.LoadLet();
     }
 
     public Texture2D Background
@@ -78,6 +87,7 @@ public class GameDrawer
         _spriteBatch.Begin();
         
         DrawBackground();
+        DrawLet();
         if (_canRun) DrawRun(race);
         if (!_canJump) DrawJump(race);
         if (_canLand) DrawLand(race);
@@ -128,9 +138,20 @@ public class GameDrawer
     private void DrawBackground()
     {
         _spriteBatch.Draw(_background, Vector2.Zero,
-            new Rectangle(_currentPosition, 0, 1920, 1080),
+            new Rectangle(_backgroundPosition, 0, 1920, 1080),
             Color.White);
-        _currentPosition += _backgroundSpeed; //при остановке игры остановить изменение
-        if (_currentPosition >= 1920) _currentPosition = 0;
+        _backgroundPosition += _environmentSpeed; //при остановке игры остановить изменение
+        if (_backgroundPosition >= 1920) _backgroundPosition = 0;
+    }
+
+    private void DrawLet()
+    {
+        if (_let == null) _let = _letsGenerator.GenerateLet();
+        var letPosition = new Vector2(_let.CurrentPosition, 600);
+        _spriteBatch.Draw(_let.Sprite, letPosition, 
+            new Rectangle(0, 0, _let.Sprite.Width, _let.Sprite.Height),
+            Color.White);
+        _let.CurrentPosition -= _environmentSpeed;
+        if (_let.CurrentPosition <= (0 - _let.Sprite.Width)) _let.CurrentPosition = 1920;
     }
 }
