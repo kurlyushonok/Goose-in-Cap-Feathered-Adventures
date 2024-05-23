@@ -9,11 +9,14 @@ namespace GooseInCap;
 public class GameDrawer
 {
     private int _currentTime;
-    private Texture2D _background;
+    private Texture2D _earthTexture;
+    private Texture2D _skyTexture;
     
     private int _environmentSpeed = 12;
+    private int _skySpeed = 1;
     private int _runPeriod = 80;
-    private int _backgroundPosition;
+    private int _backgroundEarthPosition;
+    private int _backgroundSkyPosition;
     private Texture2D _currentCharacterSprite;
     private Point _currentFrame = new Point(0, 0);
     private Point _currentCharacterFrameSize;
@@ -27,23 +30,17 @@ public class GameDrawer
     private Let _let;
 
     private SpriteBatch _spriteBatch;
-    private ContentManager _content;
 
     private Texture2D _endSprite;
     
     public GameDrawer(SpriteBatch spriteBatch, ContentManager content)
     {
         _spriteBatch = spriteBatch;
-        _content = content;
         _letsGenerator = new GenerateLets(content);
         _letsGenerator.LoadLet();
-        _endSprite = content.Load<Texture2D>("a");
-    }
-
-    public Texture2D Background
-    {
-        get => _background; 
-        set => _background = value; 
+        _endSprite = content.Load<Texture2D>("end");
+        _earthTexture = content.Load<Texture2D>("background_earth");
+        _skyTexture = content.Load<Texture2D>("background_sky");
     }
 
     public Let Let => _let;
@@ -94,7 +91,8 @@ public class GameDrawer
     {
         _spriteBatch.Begin();
         
-        DrawBackground();
+        DrawSky();
+        DrawEarth();
         DrawLet();
         _spriteBatch.DrawString(spriteFont: Font, text: race.CountCoins.ToString(), 
             position: new Vector2(1850, 70), color: Color.Black);
@@ -131,7 +129,7 @@ public class GameDrawer
             _currentFrame.Y * _currentCharacterFrameSize.Y,
             _currentCharacterFrameSize.X, _currentCharacterFrameSize.Y);
         
-        _spriteBatch.Draw(_currentCharacterSprite, race.Position, 
+        _spriteBatch.Draw(_currentCharacterSprite, race.CharacterPosition, 
             characterRectangle, Color.White);
     }
 
@@ -150,13 +148,22 @@ public class GameDrawer
         _canLand = false;
     }
     
-    private void DrawBackground()
+    private void DrawEarth()
     {
-        _spriteBatch.Draw(_background, Vector2.Zero,
-            new Rectangle(_backgroundPosition, 0, 1920, 1080),
+        _spriteBatch.Draw(_earthTexture, Vector2.Zero,
+            new Rectangle(_backgroundEarthPosition, 0, 1920, 1080),
             Color.White);
-        if (!IsCollision) _backgroundPosition += _environmentSpeed; //TODO при остановке игры остановить изменение
-        if (_backgroundPosition >= 1920) _backgroundPosition = 0;
+        if (!IsCollision) _backgroundEarthPosition += _environmentSpeed;
+        if (_backgroundEarthPosition >= 1920) _backgroundEarthPosition = 0;
+    }
+    
+    private void DrawSky()
+    {
+        _spriteBatch.Draw(_skyTexture, Vector2.Zero,
+            new Rectangle(_backgroundSkyPosition, 0, 1920, 1080),
+            Color.White);
+        if (!IsCollision) _backgroundSkyPosition += _skySpeed;
+        if (_backgroundSkyPosition >= 1920) _backgroundSkyPosition = 0;
     }
 
     private void DrawLet()
@@ -166,9 +173,7 @@ public class GameDrawer
             _let = _letsGenerator.GenerateLet();
         }
         var letPosition = new Vector2(_let.CurrentPosition, _let.Level);
-        _spriteBatch.Draw(_let.Sprite, letPosition, 
-            new Rectangle(0, 0, _let.Sprite.Width, _let.Sprite.Height),
-            Color.White);
+        _spriteBatch.Draw(_let.Sprite, letPosition, Color.White);
         if (!IsCollision) _let.CurrentPosition -= _environmentSpeed;
         if (_let.CurrentPosition <= (0 - _let.Sprite.Width))
         {
@@ -179,7 +184,7 @@ public class GameDrawer
 
     private void DrawCollision()
     {
-        _spriteBatch.Draw(_endSprite, new Vector2(960, 540), Color.White);
+        _spriteBatch.Draw(_endSprite, new Vector2(960 - _endSprite.Width / 2, 400 - _endSprite.Height / 2), Color.White);
     }
 
     private void DrawCoin()

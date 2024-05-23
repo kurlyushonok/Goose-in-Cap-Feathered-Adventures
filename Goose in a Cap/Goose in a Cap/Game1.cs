@@ -39,7 +39,6 @@ public class Game1 : Game
         
         _gameDrawer = new GameDrawer(_spriteBatch, Content)
         {
-            Background = Content.Load<Texture2D>("background_sprite"),
             Font = Content.Load<SpriteFont>("CoinsFont")
         };
         _gameController = new GameController(_gameDrawer, _loader);

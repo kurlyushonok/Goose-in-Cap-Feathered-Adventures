@@ -58,13 +58,13 @@ public class GameController
     
         if (_flag)
         {
-            if (_race.Position.Y > _race.FlightLevel) _race.Position.Y -= _race.JumpSpeed;
+            if (_race.CharacterPosition.Y > _race.FlightLevel) _race.CharacterPosition.Y -= _race.JumpSpeed;
             else _flag = false;
         }
     
         if (!_flag)
         {
-            if (_race.Position.Y < _race.RunningLevel) _race.Position.Y += _race.JumpSpeed;
+            if (_race.CharacterPosition.Y < _race.RunningLevel) _race.CharacterPosition.Y += _race.JumpSpeed;
             else
             {
                 _gameDrawer.CanLand = true;
@@ -81,9 +81,9 @@ public class GameController
 
     private void CheckCollision()
     {
-        if (_gameDrawer.Let != null && _race.Position.Y >= _gameDrawer.Let.Height &&
-            (_race.Position.X + _race.Character.FrameRunWidth - 10 >= _gameDrawer.Let.CurrentPosition && 
-             _race.Position.X <= _gameDrawer.Let.CurrentPosition + _gameDrawer.Let.Width))
+        if (_gameDrawer.Let != null && _race.CharacterPosition.Y >= _gameDrawer.Let.Height &&
+            (_race.CharacterPosition.X + _race.Character.FrameRunWidth - 10 >= _gameDrawer.Let.CurrentPosition && 
+             _race.CharacterPosition.X <= _gameDrawer.Let.CurrentPosition + _gameDrawer.Let.Width))
         {
             _gameDrawer.IsCollision = true;
             _isRunning = false;
