@@ -39,7 +39,8 @@ public class Game1 : Game
         
         _gameDrawer = new GameDrawer(_spriteBatch, Content)
         {
-            Background = Content.Load<Texture2D>("background_sprite")
+            Background = Content.Load<Texture2D>("background_sprite"),
+            Font = Content.Load<SpriteFont>("CoinsFont")
         };
         _gameController = new GameController(_gameDrawer, _loader);
         
@@ -53,7 +54,8 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-        _gameDrawer.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
+        if (_gameController.IsRunning)
+            _gameDrawer.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
         switch (_state) //TODO добавить другие состояния
         {
             case State.Game:

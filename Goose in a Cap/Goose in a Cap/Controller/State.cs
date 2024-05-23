@@ -2,7 +2,7 @@
 
 public enum State
 {
-    SplashScreen,
+    MainMenu,
     Game, 
     Final, 
     Pause,

@@ -11,7 +11,9 @@ public class GameController
     private Race _race = new Race();
     private GameDrawer _gameDrawer;
     private ContentLoad _loader;
-    private bool _isRunning; //игра запущена
+    private bool _isRunning = true; //игра запущена
+    private bool _isCollision;
+    private Player _player = new Player();
 
     public GameController(GameDrawer gameDrawer, ContentLoad loader)
     {
@@ -19,15 +21,14 @@ public class GameController
         _loader = loader;
     }
 
-    public Race Race
-    {
-        get => _race;
-    }
-
+    public Race Race  => _race;
+    public bool IsRunning => _isRunning;
+    
     public void Update()
     {
         Run();
         Jump();
+        CheckCollision();
     }
 
     public void InitializeCharacter()
@@ -67,7 +68,7 @@ public class GameController
             else
             {
                 _gameDrawer.CanLand = true;
-                _gameDrawer.CanJump = true;
+                if (_isRunning) _gameDrawer.CanJump = true;
             }
         }
     }
@@ -76,5 +77,17 @@ public class GameController
     {
         //бежать, когда началась игра
         _gameDrawer.CanRun = true;
+    }
+
+    private void CheckCollision()
+    {
+        if (_gameDrawer.Let != null && _race.Position.Y >= _gameDrawer.Let.Height &&
+            (_race.Position.X + _race.Character.FrameRunWidth - 10 >= _gameDrawer.Let.CurrentPosition && 
+             _race.Position.X <= _gameDrawer.Let.CurrentPosition + _gameDrawer.Let.Width))
+        {
+            _gameDrawer.IsCollision = true;
+            _isRunning = false;
+            _gameDrawer.CanJump = false;
+        }
     }
 }

@@ -12,29 +12,32 @@ public class GameDrawer
     private Texture2D _background;
     
     private int _environmentSpeed = 12;
-    private Point _currentFrame = new Point(0, 0);
     private int _runPeriod = 80;
+    private int _backgroundPosition;
     private Texture2D _currentCharacterSprite;
+    private Point _currentFrame = new Point(0, 0);
     private Point _currentCharacterFrameSize;
     private Point _currentCharacterSpriteSize;
-    private int _backgroundPosition;
-    private GenerateLets _letsGenerator;
 
     private bool _canRun;
     private bool _canJump = true;
     private bool _canLand;
 
-
+    private GenerateLets _letsGenerator;
     private Let _let;
-    
+
     private SpriteBatch _spriteBatch;
     private ContentManager _content;
+
+    private Texture2D _endSprite;
+    
     public GameDrawer(SpriteBatch spriteBatch, ContentManager content)
     {
         _spriteBatch = spriteBatch;
         _content = content;
         _letsGenerator = new GenerateLets(content);
         _letsGenerator.LoadLet();
+        _endSprite = content.Load<Texture2D>("a");
     }
 
     public Texture2D Background
@@ -42,6 +45,9 @@ public class GameDrawer
         get => _background; 
         set => _background = value; 
     }
+
+    public Let Let => _let;
+    public bool IsCollision { get; set; }
     
     public Point CurrentFrame
     {
@@ -76,6 +82,8 @@ public class GameDrawer
         set => _canJump = value;
     }
     
+    public SpriteFont Font { get; set; }
+    
     public bool CanLand
     {
         get => _canLand;
@@ -88,9 +96,15 @@ public class GameDrawer
         
         DrawBackground();
         DrawLet();
+        _spriteBatch.DrawString(spriteFont: Font, text: race.CountCoins.ToString(), 
+            position: new Vector2(1850, 70), color: Color.Black);
         if (_canRun) DrawRun(race);
         if (!_canJump) DrawJump(race);
         if (_canLand) DrawLand(race);
+        if (IsCollision)
+        {
+            DrawCollision();
+        }
         
         _spriteBatch.End();
     }
@@ -113,11 +127,12 @@ public class GameDrawer
                 _currentFrame.X = 0;
             }
         }
+        var characterRectangle = new Rectangle(_currentFrame.X * _currentCharacterFrameSize.X,
+            _currentFrame.Y * _currentCharacterFrameSize.Y,
+            _currentCharacterFrameSize.X, _currentCharacterFrameSize.Y);
         
         _spriteBatch.Draw(_currentCharacterSprite, race.Position, 
-            new Rectangle(_currentFrame.X * _currentCharacterFrameSize.X, 
-                _currentFrame.Y * _currentCharacterFrameSize.Y, 
-                _currentCharacterFrameSize.X,  _currentCharacterFrameSize.Y), Color.White);
+            characterRectangle, Color.White);
     }
 
     private void DrawJump(Race race)
@@ -140,23 +155,31 @@ public class GameDrawer
         _spriteBatch.Draw(_background, Vector2.Zero,
             new Rectangle(_backgroundPosition, 0, 1920, 1080),
             Color.White);
-        _backgroundPosition += _environmentSpeed; //TODO при остановке игры остановить изменение
+        if (!IsCollision) _backgroundPosition += _environmentSpeed; //TODO при остановке игры остановить изменение
         if (_backgroundPosition >= 1920) _backgroundPosition = 0;
     }
 
     private void DrawLet()
     {
-        if (_let == null) _let = _letsGenerator.GenerateLet();
+        if (_let == null)
+        {
+            _let = _letsGenerator.GenerateLet();
+        }
         var letPosition = new Vector2(_let.CurrentPosition, _let.Level);
         _spriteBatch.Draw(_let.Sprite, letPosition, 
             new Rectangle(0, 0, _let.Sprite.Width, _let.Sprite.Height),
             Color.White);
-        _let.CurrentPosition -= _environmentSpeed;
+        if (!IsCollision) _let.CurrentPosition -= _environmentSpeed;
         if (_let.CurrentPosition <= (0 - _let.Sprite.Width))
         {
             _let.CurrentPosition = 1920;
             _let = null;
         }
+    }
+
+    private void DrawCollision()
+    {
+        _spriteBatch.Draw(_endSprite, new Vector2(960, 540), Color.White);
     }
 
     private void DrawCoin()

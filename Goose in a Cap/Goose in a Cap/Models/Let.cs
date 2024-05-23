@@ -10,10 +10,12 @@ public class Let
     protected int _level = 590;
     protected Texture2D _sprite;
     private int _currentPosition = 1920;
+    private int _height;
 
     public Let(ContentManager content)
     {
         _sprite = content.Load<Texture2D>("grandmother");
+        _height = _level - _sprite.Height;
     }
 
     public int CurrentPosition
@@ -25,6 +27,9 @@ public class Let
     public Texture2D Sprite => _sprite;
     
     public int Level => _level;
+
+    public int Height => _height;
+    public int Width => _sprite.Width;
 }
 
 public class LetButchFlower : Let
