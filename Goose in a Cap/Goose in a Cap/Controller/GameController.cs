@@ -104,7 +104,7 @@ public class GameController
         {
             _player.CountCoins += 1;
             _race.CountCoins += 1;
-            _race.Coin.CurrentPosition = _race.Coin.CountOvercomeLets(_gameDrawer.CurrentLetPosition);
+            _race.Coin.CurrentPosition = _race.Coin.CountOvercomeLets(_gameDrawer.Let);
         }
     }
 }

@@ -27,11 +27,10 @@ public class Coin
 
     public Texture2D Sprite => _sprite;
 
-    public int CountOvercomeLets(int letPosition)
+    public int CountOvercomeLets(Let let)
     {
-        var result = _rnd.Next(1920, 6000);
-        while (result > letPosition - _distanceToLet && result < letPosition + _distanceToLet)
-            result = _rnd.Next(1920, 6000);
-        return result;
+        var between = _rnd.Next(_distanceToLet, 1920 - _distanceToLet);
+        var countLets = _rnd.Next(1, 3) * 1920;
+        return between + countLets;
     }
 }

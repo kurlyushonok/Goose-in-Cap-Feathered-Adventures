@@ -11,6 +11,7 @@ public class GameDrawer
     private readonly Texture2D _earthTexture;
     private readonly Texture2D _skyTexture;
     private Texture2D _currentCharacterSprite;
+    private Texture2D _scoreSprite;
     
     private int _currentTime;
     private readonly int _environmentSpeed = 12;
@@ -44,6 +45,7 @@ public class GameDrawer
         _endSprite = content.Load<Texture2D>("end");
         _earthTexture = content.Load<Texture2D>("background_earth");
         _skyTexture = content.Load<Texture2D>("background_sky");
+        _scoreSprite = content.Load<Texture2D>("score");
         _player = player;
         ContentManager = content;
     }
@@ -91,6 +93,7 @@ public class GameDrawer
         
         DrawSky();
         DrawEarth();
+        DrawScoreSprite();
         DrawLet(race);
         DrawCoin(race);
         DrawCoinsScore(race);
@@ -112,6 +115,11 @@ public class GameDrawer
         _currentCharacterSprite = goose.RunSprite;
         _currentCharacterFrameSize = new Point(goose.FrameRunWidth, goose.FrameRunHeight);
         _currentCharacterSpriteSize = goose.SpriteSizeRun;
+    }
+
+    private void DrawScoreSprite()
+    {
+        _spriteBatch.Draw(_scoreSprite, new Vector2(150, 67), Color.White);
     }
 
     private void DrawRun(Race race)
@@ -189,23 +197,23 @@ public class GameDrawer
     {
         _spriteBatch.Draw(_endSprite, new Vector2(960 - _endSprite.Width / 2, 400 - _endSprite.Height / 2), Color.White);
     }
+    
+    private void DrawCoinsScore(Race race)
+    {
+        _spriteBatch.DrawString(spriteFont: Font26, text: race.CountCoins.ToString(), 
+            position: new Vector2(200, 60), color: Color.Black);
+    }
 
     private void DrawScore(Race race)
     {
         _spriteBatch.DrawString(spriteFont: Font26, text: race.Score.ToString(), 
-            position: new Vector2(1850, 90), color: Color.Black);
+            position: new Vector2(200, 93), color: Color.Black);
     }
 
-    private void DrawCoinsScore(Race race)
-    {
-        _spriteBatch.DrawString(spriteFont: Font26, text: race.CountCoins.ToString(), 
-        position: new Vector2(1850, 60), color: Color.Black);
-    }
-    
     private void DrawRecord()
     {
         _spriteBatch.DrawString(spriteFont: Font26, text: _player.Record.ToString(), 
-            position: new Vector2(1850, 120), color: Color.Gold);
+            position: new Vector2(200, 124), color: Color.Gold);
     }
 
     private void DrawCoin(Race race)
@@ -215,7 +223,7 @@ public class GameDrawer
         if (!IsCollision) race.Coin.CurrentPosition -= _environmentSpeed;
         if (race.Coin.CurrentPosition <= (0 - race.Coin.Sprite.Width))
         {
-            race.Coin.CurrentPosition = race.Coin.CountOvercomeLets(CurrentLetPosition);
+            if (_let != null) race.Coin.CurrentPosition = race.Coin.CountOvercomeLets(_let);
         }
     }
 }
