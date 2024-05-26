@@ -18,6 +18,7 @@ public class GameDrawer
     private readonly int _runPeriod = 80;
     private int _backgroundEarthPosition;
     private int _backgroundSkyPosition;
+    private int _currentletPosition;
 
     private Point _currentFrame = new Point(0, 0);
     private Point _currentCharacterFrameSize;
@@ -48,6 +49,7 @@ public class GameDrawer
     }
 
     public Let Let => _let;
+    public int CurrentLetPosition => _currentletPosition;
     public bool IsCollision { get; set; }
     public ContentManager ContentManager { get; set; }
     
@@ -173,9 +175,11 @@ public class GameDrawer
         var letPosition = new Vector2(_let.CurrentPosition, _let.Level);
         _spriteBatch.Draw(_let.Sprite, letPosition, Color.White);
         if (!IsCollision) _let.CurrentPosition -= _environmentSpeed;
+        _currentletPosition = _let.CurrentPosition;
         if (_let.CurrentPosition <= (0 - _let.Sprite.Width))
         {
             _let.CurrentPosition = 1920;
+            _currentletPosition = 1920;
             _let = null;
             race.NumberOfLetsPassed += 1;
         }
@@ -211,7 +215,7 @@ public class GameDrawer
         if (!IsCollision) race.Coin.CurrentPosition -= _environmentSpeed;
         if (race.Coin.CurrentPosition <= (0 - race.Coin.Sprite.Width))
         {
-            race.Coin.CurrentPosition = 2100;
+            race.Coin.CurrentPosition = race.Coin.StartPosition;
         }
     }
 }

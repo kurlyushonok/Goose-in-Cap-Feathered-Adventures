@@ -98,11 +98,13 @@ public class GameController
 
     private void CheckGetCoin()
     {
-        if (_race.Coin.CurrentPosition <= _race.CharacterPosition.X + _race.Character.FrameRunWidth / 2)
+        if (_race.Coin.CurrentPosition <= _race.CharacterPosition.X + _race.Character.FrameRunWidth / 2 
+            && _race.Coin.CurrentPosition >= _race.CharacterPosition.X
+            && _race.Coin.Level <= _race.CharacterPosition.Y + _race.Character.FrameRunHeight)
         {
             _player.CountCoins += 1;
-            _race.Coin.CurrentPosition = 2100;
             _race.CountCoins += 1;
+            _race.Coin.CurrentPosition = _race.Coin.CountOvercomeLets(_gameDrawer.CurrentLetPosition);
         }
     }
 }
