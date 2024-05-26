@@ -5,7 +5,7 @@ namespace GooseInCap;
 
 public class Coin
 {
-    private int _level = 560;
+    private int _level = 580;
     private int _currentPosition = 2100;
     private Texture2D _sprite;
 

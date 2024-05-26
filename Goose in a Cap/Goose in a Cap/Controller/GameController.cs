@@ -101,6 +101,7 @@ public class GameController
         if (_race.Coin.CurrentPosition <= _race.CharacterPosition.X + _race.Character.FrameRunWidth / 2)
         {
             _player.CountCoins += 1;
+            _race.Coin.CurrentPosition = 2100;
             _race.CountCoins += 1;
         }
     }

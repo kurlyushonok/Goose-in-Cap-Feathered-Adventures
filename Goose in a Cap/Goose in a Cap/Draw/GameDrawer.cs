@@ -96,7 +96,7 @@ public class GameDrawer
         DrawRecord();
         if (_canRun) DrawRun(race);
         if (!_canJump) DrawJump(race);
-        if (_canLand) DrawLand(race);
+        if (_canLand) DrawCharacter(race);
         if (IsCollision)
         {
             DrawCollision();
@@ -138,7 +138,7 @@ public class GameDrawer
         _currentCharacterSpriteSize = race.Character.SpriteSizeJump;
     }
     
-    private void DrawLand(Race race)
+    private void DrawCharacter(Race race)
     {
         _currentCharacterSprite = race.Character.RunSprite;
         _currentCharacterFrameSize = new Point(race.Character.FrameRunWidth, race.Character.FrameRunHeight);
@@ -208,7 +208,7 @@ public class GameDrawer
     {
         _spriteBatch.Draw(race.Coin.Sprite, new Vector2(race.Coin.CurrentPosition, race.Coin.Level),
             Color.White);
-        race.Coin.CurrentPosition -= _environmentSpeed;
+        if (!IsCollision) race.Coin.CurrentPosition -= _environmentSpeed;
         if (race.Coin.CurrentPosition <= (0 - race.Coin.Sprite.Width))
         {
             race.Coin.CurrentPosition = 2100;
