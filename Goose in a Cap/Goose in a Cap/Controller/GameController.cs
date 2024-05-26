@@ -7,28 +7,33 @@ namespace GooseInCap;
 
 public class GameController
 {
-    private bool _flag;
-    private Race _race = new Race();
+    private Race _race; 
     private GameDrawer _gameDrawer;
     private ContentLoad _loader;
-    private bool _isRunning = true; //игра запущена
+    private Player _player;
+    
+    private bool _isJump;
     private bool _isCollision;
-    private Player _player = new Player();
 
-    public GameController(GameDrawer gameDrawer, ContentLoad loader)
+    public GameController(GameDrawer gameDrawer, ContentLoad loader, Player player)
     {
         _gameDrawer = gameDrawer;
         _loader = loader;
+        _player = player;
+        _race = new Race(gameDrawer.ContentManager);
     }
 
     public Race Race  => _race;
-    public bool IsRunning => _isRunning;
-    
+    public bool IsRunning { get; set; }
+
     public void Update()
     {
         Run();
         Jump();
         CheckCollision();
+        CheckGetCoin();
+        if (IsRunning) _race.Score += _race.PointsConst;
+        else if (_race.Score > _player.Record) _player.Record = _race.Score;
     }
 
     public void InitializeCharacter()
@@ -52,23 +57,23 @@ public class GameController
              Keyboard.GetState().IsKeyDown(Keys.Space) ||
              Keyboard.GetState().IsKeyDown(Keys.W)) && _gameDrawer.CanJump)
         {
-            _flag = true;
+            _isJump = true;
             _gameDrawer.CanJump = false;
         }
     
-        if (_flag)
+        if (_isJump)
         {
             if (_race.CharacterPosition.Y > _race.FlightLevel) _race.CharacterPosition.Y -= _race.JumpSpeed;
-            else _flag = false;
+            else _isJump = false;
         }
     
-        if (!_flag)
+        if (!_isJump)
         {
             if (_race.CharacterPosition.Y < _race.RunningLevel) _race.CharacterPosition.Y += _race.JumpSpeed;
             else
             {
                 _gameDrawer.CanLand = true;
-                if (_isRunning) _gameDrawer.CanJump = true;
+                if (IsRunning) _gameDrawer.CanJump = true;
             }
         }
     }
@@ -86,8 +91,17 @@ public class GameController
              _race.CharacterPosition.X <= _gameDrawer.Let.CurrentPosition + _gameDrawer.Let.Width))
         {
             _gameDrawer.IsCollision = true;
-            _isRunning = false;
+            IsRunning = false;
             _gameDrawer.CanJump = false;
+        }
+    }
+
+    private void CheckGetCoin()
+    {
+        if (_race.Coin.CurrentPosition <= _race.CharacterPosition.X + _race.Character.FrameRunWidth / 2)
+        {
+            _player.CountCoins += 1;
+            _race.CountCoins += 1;
         }
     }
 }

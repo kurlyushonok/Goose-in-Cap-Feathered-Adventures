@@ -2,11 +2,6 @@
 
 public class Player
 {
-    private int _countCoins;
-
-    public int CountCoins
-    {
-        get => _countCoins;
-        set => _countCoins = value;
-    }
+    public int CountCoins { get; set; }
+    public int Record { get; set; }
 }

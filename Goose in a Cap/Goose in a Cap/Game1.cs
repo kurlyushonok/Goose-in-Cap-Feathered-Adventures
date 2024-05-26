@@ -36,12 +36,12 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        
-        _gameDrawer = new GameDrawer(_spriteBatch, Content)
+        var player = new Player();
+        _gameDrawer = new GameDrawer(_spriteBatch, Content, player)
         {
             Font = Content.Load<SpriteFont>("CoinsFont")
         };
-        _gameController = new GameController(_gameDrawer, _loader);
+        _gameController = new GameController(_gameDrawer, _loader, player);
         
         var baseRun = Content.Load<Texture2D>("goose_run_sprite");
         _loader.LoadSprite(baseRun, new Point(2, 1), "run_base");
@@ -58,6 +58,7 @@ public class Game1 : Game
         switch (_state) //TODO добавить другие состояния
         {
             case State.Game:
+                _gameController.IsRunning = true;
                 _gameController.Update();
                 break;
         }

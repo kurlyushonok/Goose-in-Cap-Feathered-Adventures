@@ -15,6 +15,13 @@ public class Race
     private int _flightLevel = 150;
     private int _jumpSpeed = 22;
     private int _currentCountCoins = 0;
+    private int _pointsConst = 1;
+    private Coin _coin;
+
+    public Race(ContentManager content)
+    {
+        _coin = new Coin(content);
+    }
 
     public int CountCoins
     {
@@ -24,10 +31,14 @@ public class Race
 
     public Goose Character { get; set; }
     public int Score { get; set; }
+    public int NumberOfLetsPassed { get; set; }
 
     public int RunningLevel => _runningLevel;
     public int FlightLevel => _flightLevel;
     public int JumpSpeed => _jumpSpeed;
+    public int PointsConst => _pointsConst;
+    public Coin Coin => _coin;
+
 }
 
 // public class LevelConfiguration
