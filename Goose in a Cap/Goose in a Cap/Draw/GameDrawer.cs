@@ -77,7 +77,7 @@ public class GameDrawer
         set => _canJump = value;
     }
 
-    public SpriteFont Font { get; set; }
+    public SpriteFont Font26 { get; set; }
     
     public bool CanLand
     {
@@ -192,19 +192,19 @@ public class GameDrawer
 
     private void DrawScore(Race race)
     {
-        _spriteBatch.DrawString(spriteFont: Font, text: race.Score.ToString(), 
+        _spriteBatch.DrawString(spriteFont: Font26, text: race.Score.ToString(), 
             position: new Vector2(1850, 90), color: Color.Black);
     }
 
     private void DrawCoinsScore(Race race)
     {
-        _spriteBatch.DrawString(spriteFont: Font, text: race.CountCoins.ToString(), 
+        _spriteBatch.DrawString(spriteFont: Font26, text: race.CountCoins.ToString(), 
         position: new Vector2(1850, 60), color: Color.Black);
     }
     
     private void DrawRecord()
     {
-        _spriteBatch.DrawString(spriteFont: Font, text: _player.Record.ToString(), 
+        _spriteBatch.DrawString(spriteFont: Font26, text: _player.Record.ToString(), 
             position: new Vector2(1850, 120), color: Color.Gold);
     }
 
@@ -215,7 +215,7 @@ public class GameDrawer
         if (!IsCollision) race.Coin.CurrentPosition -= _environmentSpeed;
         if (race.Coin.CurrentPosition <= (0 - race.Coin.Sprite.Width))
         {
-            race.Coin.CurrentPosition = race.Coin.StartPosition;
+            race.Coin.CurrentPosition = race.Coin.CountOvercomeLets(CurrentLetPosition);
         }
     }
 }

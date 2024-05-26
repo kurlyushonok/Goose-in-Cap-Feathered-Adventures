@@ -39,7 +39,7 @@ public class Game1 : Game
         var player = new Player();
         _gameDrawer = new GameDrawer(_spriteBatch, Content, player)
         {
-            Font = Content.Load<SpriteFont>("CoinsFont")
+            Font26 = Content.Load<SpriteFont>("CoinsFont")
         };
         _gameController = new GameController(_gameDrawer, _loader, player);
         

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/File.spritefont</SourceFile>
-  <SourceTime>2024-05-21T21:45:53.1974805+05:00</SourceTime>
+  <SourceTime>2024-05-26T16:27:02.8762629+05:00</SourceTime>
   <DestFile>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/bin/Windows/Content/CoinsFont.xnb</DestFile>
-  <DestTime>2024-05-21T21:46:12.0676556+05:00</DestTime>
+  <DestTime>2024-05-26T16:27:14.0014337+05:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
