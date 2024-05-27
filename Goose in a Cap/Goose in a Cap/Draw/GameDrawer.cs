@@ -16,7 +16,7 @@ public class GameDrawer
     private int _currentTime;
     private readonly int _environmentSpeed = 12;
     private readonly int _skySpeed = 1;
-    private readonly int _runPeriod = 80;
+    private readonly int _runPeriod = 75;
     private int _backgroundEarthPosition;
     private int _backgroundSkyPosition;
     private int _currentletPosition;

@@ -11,6 +11,7 @@ public class GameController
     private GameDrawer _gameDrawer;
     private ContentLoad _loader;
     private Player _player;
+    private State _state = State.Game;
     
     private bool _isJump;
     private bool _isCollision;
@@ -26,7 +27,7 @@ public class GameController
     public Race Race  => _race;
     public bool IsRunning { get; set; }
 
-    public void Update()
+    public void GameUpdate()
     {
         Run();
         Jump();

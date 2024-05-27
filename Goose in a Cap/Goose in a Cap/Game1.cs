@@ -59,7 +59,7 @@ public class Game1 : Game
         {
             case State.Game:
                 _gameController.IsRunning = true;
-                _gameController.Update();
+                _gameController.GameUpdate();
                 break;
         }
         

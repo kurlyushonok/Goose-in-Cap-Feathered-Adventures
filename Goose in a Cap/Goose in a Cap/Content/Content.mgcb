@@ -212,6 +212,18 @@
 /processorParam:TextureFormat=Color
 /build:p3nechaev.png
 
+#begin play_btn.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:play_btn.png
+
 #begin score.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -235,4 +247,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:stone.png
+
+#begin store_btn.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:store_btn.png
 
