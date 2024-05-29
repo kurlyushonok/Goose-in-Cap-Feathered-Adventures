@@ -12,6 +12,7 @@ public class GameDrawer
     private readonly Texture2D _skyTexture;
     private Texture2D _currentCharacterSprite;
     private Texture2D _scoreSprite;
+    private Texture2D _mainMenuSprite;
     
     private int _currentTime;
     private readonly int _environmentSpeed = 12;
@@ -46,6 +47,7 @@ public class GameDrawer
         _earthTexture = content.Load<Texture2D>("background_earth");
         _skyTexture = content.Load<Texture2D>("background_sky");
         _scoreSprite = content.Load<Texture2D>("score");
+        _mainMenuSprite = content.Load<Texture2D>("start_screen");
         _player = player;
         ContentManager = content;
     }
@@ -86,8 +88,19 @@ public class GameDrawer
         get => _canLand;
         set => _canLand = value;
     }
+
+    public void DrawMainMenu(MainMenu menu)
+    {
+        _spriteBatch.Begin();
+        
+        DrawMainMenuBckg();
+        DrawButton(menu.PlayButton);
+        DrawButton(menu.StoreButton);
+        
+        _spriteBatch.End();
+    }
     
-    public void Draw(Race race)
+    public void DrawGame(Race race)
     {
         _spriteBatch.Begin();
         
@@ -115,6 +128,16 @@ public class GameDrawer
         _currentCharacterSprite = goose.RunSprite;
         _currentCharacterFrameSize = new Point(goose.FrameRunWidth, goose.FrameRunHeight);
         _currentCharacterSpriteSize = goose.SpriteSizeRun;
+    }
+
+    private void DrawMainMenuBckg()
+    {
+        _spriteBatch.Draw(_mainMenuSprite, Vector2.Zero, Color.White);
+    }
+
+    private void DrawButton(Button btn)
+    {
+        _spriteBatch.Draw(btn.Sprite, btn.Position, Color.White);
     }
 
     private void DrawScoreSprite()

@@ -8,8 +8,8 @@ namespace GooseInCap;
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
-    public static SpriteBatch _spriteBatch;
-    private State _state = State.Game;
+    private static SpriteBatch _spriteBatch;
+    public static State State = State.MainMenu;
     
     private ContentLoad _loader = new ContentLoad();
     private GameDrawer _gameDrawer;
@@ -55,8 +55,12 @@ public class Game1 : Game
     {
         if (_gameController.IsRunning)
             _gameDrawer.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
-        switch (_state) //TODO добавить другие состояния
+        switch (State) //TODO добавить другие состояния
         {
+            case State.MainMenu:
+                _gameController.MenuUpdate();
+                break;
+            
             case State.Game:
                 _gameController.IsRunning = true;
                 _gameController.GameUpdate();
@@ -72,10 +76,14 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        switch (_state)
+        switch (State)
         {
+            case State.MainMenu:
+                _gameDrawer.DrawMainMenu(_gameController.Menu);
+                break;
+            
             case State.Game:
-                _gameDrawer.Draw(_gameController.Race);
+                _gameDrawer.DrawGame(_gameController.Race);
                 break;
         }
         base.Draw(gameTime);

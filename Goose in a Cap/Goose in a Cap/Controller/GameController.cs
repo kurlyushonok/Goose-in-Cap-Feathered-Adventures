@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -7,12 +8,12 @@ namespace GooseInCap;
 
 public class GameController
 {
-    private Race _race; 
+    private Race _race;
+    private MainMenu _menu;
     private GameDrawer _gameDrawer;
     private ContentLoad _loader;
     private Player _player;
-    private State _state = State.Game;
-    
+
     private bool _isJump;
     private bool _isCollision;
 
@@ -22,10 +23,18 @@ public class GameController
         _loader = loader;
         _player = player;
         _race = new Race(gameDrawer.ContentManager);
+        _menu = new MainMenu(gameDrawer.ContentManager);
     }
 
     public Race Race  => _race;
+    public MainMenu Menu => _menu;
     public bool IsRunning { get; set; }
+
+    public void MenuUpdate()
+    {
+        _menu.PlayButton.ExecuteOnClick();
+        _menu.StoreButton.ExecuteOnClick();
+    }
 
     public void GameUpdate()
     {
