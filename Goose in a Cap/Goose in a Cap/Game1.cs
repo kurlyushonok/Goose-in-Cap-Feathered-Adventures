@@ -7,15 +7,14 @@ namespace GooseInCap;
 
 public class Game1 : Game
 {
-    private GraphicsDeviceManager _graphics;
-    private static SpriteBatch _spriteBatch;
     public static State State = State.MainMenu;
     
+    private GraphicsDeviceManager _graphics;
+    private static SpriteBatch _spriteBatch;
+
     private ContentLoad _loader = new ContentLoad();
     private GameDrawer _gameDrawer;
     private GameController _gameController;
-    
-    // public static event Action initializeGoose;
 
     public Game1()
     {
@@ -55,15 +54,22 @@ public class Game1 : Game
     {
         if (_gameController.IsRunning)
             _gameDrawer.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
-        switch (State) //TODO добавить другие состояния
+        switch (State) 
         {
             case State.MainMenu:
                 _gameController.MenuUpdate();
                 break;
             
             case State.Game:
+                if (_gameController.Final.ReplayButton.IsClick ||
+                    _gameController.Final.BackButton.IsClick)
+                    _gameDrawer.CurrentTime = 0;
                 _gameController.IsRunning = true;
                 _gameController.GameUpdate();
+                break;
+            
+            case State.Final:
+                _gameController.FinalUpdate();
                 break;
         }
         
@@ -84,6 +90,9 @@ public class Game1 : Game
             
             case State.Game:
                 _gameDrawer.DrawGame(_gameController.Race);
+                break;
+            case State.Final:
+                _gameDrawer.DrawFinal(_gameController.Final);
                 break;
         }
         base.Draw(gameTime);

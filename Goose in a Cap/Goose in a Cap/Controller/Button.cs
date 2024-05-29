@@ -21,6 +21,8 @@ public class Button
         _position = new Vector2(960 - _sprite.Width / 2, 500 - _sprite.Height / 2);
         _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _sprite.Width, _sprite.Height);
     }
+    
+    public bool IsClick { get; set; }
 
     public Texture2D Sprite => _sprite;
     public Vector2 Position => _position;
@@ -38,16 +40,61 @@ public class Button
 
     public void ExecuteOnClick()
     {
-        if (EnterButton()) Game1.State = State.Game;
+        if (EnterButton())
+        {
+            Game1.State = State.Game;
+            IsClick = true;
+        }
     }
 }
 
 public class StoreBtn : Button
 {
+    public bool IsClick { get; set; }
     public StoreBtn(ContentManager content) : base(content)
     {
         _sprite = content.Load<Texture2D>("store_btn");
-        _position = new Vector2(960 - _sprite.Width / 2, 600 - _sprite.Height / 2);
+        _position = new Vector2(960 - _sprite.Width / 2, 620 - _sprite.Height / 2);
         _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _sprite.Width, _sprite.Height);
+    }
+}
+
+public class ReplayBtn : Button
+{
+    public bool IsClick { get; set; }
+    public ReplayBtn(ContentManager content) : base(content)
+    {
+        _sprite = content.Load<Texture2D>("replay_btn");
+        _position = new Vector2(960 - _sprite.Width / 2, 620 - _sprite.Height / 2);
+        _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _sprite.Width, _sprite.Height);
+    }
+    
+    public void ExecuteOnClick()
+    {
+        if (EnterButton())
+        {
+            Game1.State = State.Game;
+            IsClick = true;
+        }
+    }
+}
+
+public class BackBtn : Button
+{
+    public bool IsClick { get; set; }
+    public BackBtn(ContentManager content) : base(content)
+    {
+        _sprite = content.Load<Texture2D>("to_menu_btn");
+        _position = new Vector2(960 - _sprite.Width / 2, 740 - _sprite.Height / 2);
+        _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _sprite.Width, _sprite.Height);
+    }
+
+    public void ExecuteOnClick()
+    {
+        if (EnterButton())
+        {
+            Game1.State = State.MainMenu;
+            IsClick = true;
+        }
     }
 }

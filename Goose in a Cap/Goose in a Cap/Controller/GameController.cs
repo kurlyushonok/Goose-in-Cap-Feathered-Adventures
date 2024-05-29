@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -10,12 +11,13 @@ public class GameController
 {
     private Race _race;
     private MainMenu _menu;
+    private Final _final;
+        
     private GameDrawer _gameDrawer;
     private ContentLoad _loader;
     private Player _player;
 
     private bool _isJump;
-    private bool _isCollision;
 
     public GameController(GameDrawer gameDrawer, ContentLoad loader, Player player)
     {
@@ -24,10 +26,12 @@ public class GameController
         _player = player;
         _race = new Race(gameDrawer.ContentManager);
         _menu = new MainMenu(gameDrawer.ContentManager);
+        _final = new Final(_gameDrawer.ContentManager);
     }
 
     public Race Race  => _race;
     public MainMenu Menu => _menu;
+    public Final Final => _final;
     public bool IsRunning { get; set; }
 
     public void MenuUpdate()
@@ -38,12 +42,38 @@ public class GameController
 
     public void GameUpdate()
     {
+        _final.ReplayButton.IsClick = false;
+        _final.BackButton.IsClick = false;
         Run();
         Jump();
         CheckCollision();
         CheckGetCoin();
         if (IsRunning) _race.Score += _race.PointsConst;
         else if (_race.Score > _player.Record) _player.Record = _race.Score;
+    }
+    
+    public void FinalUpdate()
+    {
+        _final.ReplayButton.ExecuteOnClick();
+        _final.BackButton.ExecuteOnClick();
+        if (_final.ReplayButton.IsClick || _final.BackButton.IsClick)
+        {
+            _gameDrawer.CurrentTime = 0;
+            if (_gameDrawer.Let != null) _gameDrawer.Let.CurrentPosition = 1920;
+            _gameDrawer.Let = null;
+            _gameDrawer.IsCollision = false;
+            _gameDrawer.CanJump = true;
+            _gameDrawer.CanRun= true;
+            _gameDrawer.BackgroundEarthPosition = 0;
+            _gameDrawer.BackgroundSkyPosition = 0;
+
+            IsRunning = true;
+            
+            _player.CountCoins += _race.CountCoins;
+            _race.CountCoins = 0;
+            _race.Score = 0;
+            _race.Coin.CurrentPosition = 2500;
+        }
     }
 
     public void InitializeCharacter()
@@ -90,7 +120,6 @@ public class GameController
 
     private void Run()
     {
-        //бежать, когда началась игра
         _gameDrawer.CanRun = true;
     }
 
@@ -103,6 +132,7 @@ public class GameController
             _gameDrawer.IsCollision = true;
             IsRunning = false;
             _gameDrawer.CanJump = false;
+            Game1.State = State.Final;
         }
     }
 

@@ -22,10 +22,12 @@
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/grandmother.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/p3nechaev.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/play_btn.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/replay_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/score.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/start_screen.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/stone.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/store_btn.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/to_menu_btn.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
@@ -39,6 +41,8 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>CoinsFont.spritefont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

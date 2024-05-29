@@ -18,9 +18,6 @@ public class GameDrawer
     private readonly int _environmentSpeed = 12;
     private readonly int _skySpeed = 1;
     private readonly int _runPeriod = 75;
-    private int _backgroundEarthPosition;
-    private int _backgroundSkyPosition;
-    private int _currentletPosition;
 
     private Point _currentFrame = new Point(0, 0);
     private Point _currentCharacterFrameSize;
@@ -52,8 +49,14 @@ public class GameDrawer
         ContentManager = content;
     }
 
-    public Let Let => _let;
-    public int CurrentLetPosition => _currentletPosition;
+    public Let Let{
+        get => _let;
+        set => _let = value;
+    }
+    
+    public int BackgroundEarthPosition { get; set; }
+    public int BackgroundSkyPosition { get; set; }
+
     public bool IsCollision { get; set; }
     public ContentManager ContentManager { get; set; }
     
@@ -115,10 +118,17 @@ public class GameDrawer
         if (_canRun) DrawRun(race);
         if (!_canJump) DrawJump(race);
         if (_canLand) DrawCharacter(race);
-        if (IsCollision)
-        {
-            DrawCollision();
-        }
+
+        _spriteBatch.End();
+    }
+
+    public void DrawFinal(Final final)
+    {
+        _spriteBatch.Begin();
+        
+        DrawCollision();
+        DrawButton(final.ReplayButton);
+        DrawButton(final.BackButton);
         
         _spriteBatch.End();
     }
@@ -182,19 +192,19 @@ public class GameDrawer
     private void DrawEarth()
     {
         _spriteBatch.Draw(_earthTexture, Vector2.Zero,
-            new Rectangle(_backgroundEarthPosition, 0, 1920, 1080),
+            new Rectangle(BackgroundEarthPosition, 0, 1920, 1080),
             Color.White);
-        if (!IsCollision) _backgroundEarthPosition += _environmentSpeed;
-        if (_backgroundEarthPosition >= 1920) _backgroundEarthPosition = 0;
+        if (!IsCollision) BackgroundEarthPosition += _environmentSpeed;
+        if (BackgroundEarthPosition >= 1920) BackgroundEarthPosition = 0;
     }
     
     private void DrawSky()
     {
         _spriteBatch.Draw(_skyTexture, Vector2.Zero,
-            new Rectangle(_backgroundSkyPosition, 0, 1920, 1080),
+            new Rectangle(BackgroundSkyPosition, 0, 1920, 1080),
             Color.White);
-        if (!IsCollision) _backgroundSkyPosition += _skySpeed;
-        if (_backgroundSkyPosition >= 1920) _backgroundSkyPosition = 0;
+        if (!IsCollision) BackgroundSkyPosition += _skySpeed;
+        if (BackgroundSkyPosition >= 1920) BackgroundSkyPosition = 0;
     }
 
     private void DrawLet(Race race)
@@ -206,11 +216,9 @@ public class GameDrawer
         var letPosition = new Vector2(_let.CurrentPosition, _let.Level);
         _spriteBatch.Draw(_let.Sprite, letPosition, Color.White);
         if (!IsCollision) _let.CurrentPosition -= _environmentSpeed;
-        _currentletPosition = _let.CurrentPosition;
         if (_let.CurrentPosition <= (0 - _let.Sprite.Width))
         {
             _let.CurrentPosition = 1920;
-            _currentletPosition = 1920;
             _let = null;
             race.NumberOfLetsPassed += 1;
         }
