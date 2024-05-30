@@ -69,6 +69,7 @@ public class GameController
             _gameDrawer.CanRun= true;
             _gameDrawer.BackgroundEarthPosition = 0;
             _gameDrawer.BackgroundSkyPosition = 0;
+            _gameDrawer.CurrentCorralPosition = 400;
 
             IsRunning = true;
             

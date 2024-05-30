@@ -48,7 +48,10 @@ public class Game1 : Game
     protected override void Update(GameTime gameTime)
     {
         if (_gameController.IsRunning)
+        {
             _gameDrawer.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
+            _gameDrawer.CurrentCorralTime += gameTime.ElapsedGameTime.Milliseconds;
+        }
         switch (State) 
         {
             case State.MainMenu:
@@ -58,7 +61,10 @@ public class Game1 : Game
             case State.Game:
                 if (_gameController.Final.ReplayButton.IsClick ||
                     _gameController.Final.BackButton.IsClick)
+                {
                     _gameDrawer.CurrentTime = 0;
+                    _gameDrawer.CurrentCorralTime = 0;
+                }
                 _gameController.IsRunning = true;
                 _gameController.GameUpdate();
                 break;
@@ -68,6 +74,8 @@ public class Game1 : Game
                 break;
             
             case State.Pause:
+                _gameDrawer.CurrentTime = 0;
+                _gameDrawer.CurrentCorralTime = 0;
                 _gameController.PauseUpdate();
                 break;
         }

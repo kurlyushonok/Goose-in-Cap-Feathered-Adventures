@@ -11,17 +11,21 @@ public class GameDrawer
     private readonly Texture2D _earthTexture;
     private readonly Texture2D _skyTexture;
     private Texture2D _currentCharacterSprite;
-    private Texture2D _scoreSprite;
-    private Texture2D _mainMenuSprite;
+    private readonly Texture2D _scoreSprite;
+    private readonly Texture2D _mainMenuSprite;
+    private readonly Texture2D _corral;
     
-    private int _currentTime;
-    private readonly int _environmentSpeed = 12;
+    private readonly int _environmentSpeed = 10;
     private readonly int _skySpeed = 1;
     private readonly int _runPeriod = 75;
+    private readonly int _corralPeriod = 150;
+    private int _currentCorralPosition = 400;
 
     private Point _currentFrame = new Point(0, 0);
     private Point _currentCharacterFrameSize;
     private Point _currentCharacterSpriteSize;
+    private readonly Point _corralSize = new Point(2, 1);
+    private Point _currentCorralFrame = new Point(0, 0);
 
     private bool _canRun;
     private bool _canJump = true;
@@ -29,7 +33,7 @@ public class GameDrawer
 
     private readonly GenerateLets _letsGenerator;
     private Let _let;
-    private Player _player;
+    private readonly Player _player;
 
     private readonly SpriteBatch _spriteBatch;
 
@@ -45,6 +49,7 @@ public class GameDrawer
         _skyTexture = content.Load<Texture2D>("background_sky");
         _scoreSprite = content.Load<Texture2D>("score");
         _mainMenuSprite = content.Load<Texture2D>("start_screen");
+        _corral = content.Load<Texture2D>("corral");
         _player = player;
         ContentManager = content;
     }
@@ -57,6 +62,12 @@ public class GameDrawer
     public int BackgroundEarthPosition { get; set; }
     public int BackgroundSkyPosition { get; set; }
 
+    public int CurrentCorralPosition
+    {
+        get => _currentCorralPosition;
+        set => _currentCorralPosition = value;
+    }
+
     public bool IsCollision { get; set; }
     public ContentManager ContentManager { get; set; }
     
@@ -66,11 +77,9 @@ public class GameDrawer
 
     public Point CurrentCharacterFrameSize  => _currentCharacterFrameSize;
 
-    public int CurrentTime
-    {
-        get => _currentTime;
-        set => _currentTime = value;
-    }
+    public int CurrentTime { get; set; }
+
+    public int CurrentCorralTime { get; set; }
 
     public bool CanRun
     {
@@ -110,6 +119,7 @@ public class GameDrawer
         DrawSky();
         DrawEarth();
         DrawScoreSprite();
+        if (_currentCorralPosition >= 0 - _corral.Width / 2) DrawCorral();
         DrawLet(race);
         DrawCoin(race);
         DrawCoinsScore(race);
@@ -154,6 +164,26 @@ public class GameDrawer
         _spriteBatch.Draw(_mainMenuSprite, Vector2.Zero, Color.White);
     }
 
+    private void DrawCorral()
+    {
+        if (CurrentCorralTime > _corralPeriod)
+        {
+            CurrentCorralTime -= _corralPeriod;
+            ++_currentCorralFrame.X;
+            if (_currentCorralFrame.X >= _corralSize.X)
+            {
+                _currentCorralFrame.X = 0;
+            }
+        }
+        var characterRectangle = new Rectangle(_currentCorralFrame.X * _corral.Width / 2,
+            _currentCorralFrame.Y * _corral.Height,
+            _corral.Width / 2, _corral.Height);
+        
+        _spriteBatch.Draw(_corral, new Vector2(CurrentCorralPosition, 520), 
+            characterRectangle, Color.White);
+        CurrentCorralPosition -= _environmentSpeed;
+    }
+
     private void DrawButton(Button btn)
     {
         _spriteBatch.Draw(btn.Sprite, btn.Position, Color.White);
@@ -166,9 +196,9 @@ public class GameDrawer
 
     private void DrawRun(Race race)
     {
-        if (_currentTime > _runPeriod)
+        if (CurrentTime > _runPeriod)
         {
-            _currentTime -= _runPeriod;
+            CurrentTime -= _runPeriod;
             ++_currentFrame.X;
             if (_currentFrame.X >= _currentCharacterSpriteSize.X)
             {

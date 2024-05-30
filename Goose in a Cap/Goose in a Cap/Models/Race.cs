@@ -10,7 +10,7 @@ namespace GooseInCap;
 
 public class Race
 {
-    public Vector2 CharacterPosition = new Vector2(180, 520);
+    public Vector2 CharacterPosition = new Vector2(250, 520);
     private int _runningLevel = 520;
     private int _flightLevel = 150;
     private int _jumpSpeed = 22;
