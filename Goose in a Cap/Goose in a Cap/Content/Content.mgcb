@@ -109,6 +109,30 @@
 /processorParam:TextureFormat=Color
 /build:coin.png
 
+#begin continue_btn_hover.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:continue_btn_hover.png
+
+#begin continue_btn.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:continue_btn.png
+
 #begin end.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -212,6 +236,18 @@
 /processorParam:TextureFormat=Color
 /build:p3nechaev.png
 
+#begin play_btn_hover.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:play_btn_hover.png
+
 #begin play_btn.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -236,6 +272,18 @@
 /processorParam:TextureFormat=Color
 /build:replay_btn.png
 
+#begin replay_hover.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:replay_hover.png
+
 #begin score.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -247,6 +295,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:score.png
+
+#begin srore_btn_hover.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:srore_btn_hover.png
 
 #begin start_screen.png
 /importer:TextureImporter
@@ -283,6 +343,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:store_btn.png
+
+#begin to_menu_btn_hover.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:to_menu_btn_hover.png
 
 #begin to_menu_btn.png
 /importer:TextureImporter

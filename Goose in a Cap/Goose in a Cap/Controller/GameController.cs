@@ -144,4 +144,9 @@ public class GameController
             _race.Coin.CurrentPosition = _race.Coin.CountOvercomeLets(_gameDrawer.Let);
         }
     }
+
+    private void CheckPause()
+    {
+        
+    }
 }
