@@ -41,12 +41,7 @@ public class Game1 : Game
             Font26 = Content.Load<SpriteFont>("CoinsFont")
         };
         _gameController = new GameController(_gameDrawer, _loader, player);
-        
-        var baseRun = Content.Load<Texture2D>("goose_run_sprite");
-        _loader.LoadSprite(baseRun, new Point(2, 1), "run_base");
-        var baseJump = Content.Load<Texture2D>("goose_jump");
-        _loader.LoadSprite(baseJump, new Point(1, 1), "jump_base");
-        
+
         _gameController.InitializeCharacter();
     }
 

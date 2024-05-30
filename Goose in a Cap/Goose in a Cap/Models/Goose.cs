@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -13,21 +14,13 @@ public class Goose
     private Texture2D _jumpSprite;
     private Point _spriteSizeJump;
 
-    private Texture2D _waitSprite;
-    private Point _spriteSizeWait;
-
-    public Goose(string nameRunSprite, string nameJumpSprite, string nameWaitSprite, 
-        Dictionary<string, (Texture2D, Point)> sprites)
+    public Goose(ContentManager content)
     {
-        _runSprite = sprites[nameRunSprite].Item1;
-        _spriteSizeRun = sprites[nameRunSprite].Item2;
+        _runSprite = content.Load<Texture2D>("goose_run_sprite");
+        _spriteSizeRun = new Point(2, 1);
 
-        _jumpSprite = sprites[nameJumpSprite].Item1;
-        _spriteSizeJump = sprites[nameJumpSprite].Item2;
-
-        _waitSprite = sprites[nameWaitSprite].Item1;
-        _spriteSizeWait = sprites[nameWaitSprite].Item2;
-
+        _jumpSprite = content.Load<Texture2D>("goose_jump");
+        _spriteSizeJump = new Point(1, 1);
     }
 
     public Texture2D RunSprite
@@ -38,11 +31,6 @@ public class Goose
     public Texture2D JumpSprite
     {
         get => _jumpSprite;
-    }
-    
-    public Texture2D WaitSprite
-    {
-        get => _waitSprite;
     }
 
     public int FrameRunWidth
@@ -64,17 +52,7 @@ public class Goose
     {
         get => _jumpSprite.Height;
     }
-    
-    public int FrameWaitWidth
-    {
-        get => _waitSprite.Width / _spriteSizeWait.X;
-    }
-    
-    public int FrameWaitHeight
-    {
-        get => _waitSprite.Height;
-    }
-    
+
     public Point SpriteSizeRun
     {
         get => _spriteSizeRun;
@@ -83,10 +61,5 @@ public class Goose
     public Point SpriteSizeJump
     {
         get => _spriteSizeJump;
-    }
-    
-    public Point SpriteSizeWait
-    {
-        get => _spriteSizeWait;
     }
 }
