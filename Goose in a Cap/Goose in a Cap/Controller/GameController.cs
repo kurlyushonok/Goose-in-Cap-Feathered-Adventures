@@ -12,6 +12,7 @@ public class GameController
     private Race _race;
     private MainMenu _menu;
     private Final _final;
+    private Pause _pause;
         
     private GameDrawer _gameDrawer;
     private ContentLoad _loader;
@@ -27,11 +28,13 @@ public class GameController
         _race = new Race(gameDrawer.ContentManager);
         _menu = new MainMenu(gameDrawer.ContentManager);
         _final = new Final(_gameDrawer.ContentManager);
+        _pause = new Pause(_gameDrawer.ContentManager);
     }
 
     public Race Race  => _race;
     public MainMenu Menu => _menu;
     public Final Final => _final;
+    public Pause Pause => _pause;
     public bool IsRunning { get; set; }
 
     public void MenuUpdate()
@@ -48,6 +51,7 @@ public class GameController
         Jump();
         CheckCollision();
         CheckGetCoin();
+        CheckPause();
         if (IsRunning) _race.Score += _race.PointsConst;
         else if (_race.Score > _player.Record) _player.Record = _race.Score;
     }
@@ -73,6 +77,12 @@ public class GameController
             _race.Score = 0;
             _race.Coin.CurrentPosition = 2500;
         }
+    }
+
+    public void PauseUpdate()
+    {
+        _pause.PauseButton.ExecuteOnClick();
+        if (_pause.PauseButton.IsClick) IsRunning = true;
     }
 
     public void InitializeCharacter()
@@ -147,6 +157,10 @@ public class GameController
 
     private void CheckPause()
     {
-        
+        if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+        {
+            Game1.State = State.Pause;
+            IsRunning = false;
+        }
     }
 }

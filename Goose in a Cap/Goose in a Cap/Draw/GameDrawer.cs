@@ -132,6 +132,15 @@ public class GameDrawer
         
         _spriteBatch.End();
     }
+
+    public void DrawPause(Pause pause)
+    {
+        _spriteBatch.Begin();
+        
+        DrawButton(pause.PauseButton);
+
+        _spriteBatch.End();
+    }
     
     public void DrawCharacter(Goose goose)
     {

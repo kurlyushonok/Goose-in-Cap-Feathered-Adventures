@@ -121,7 +121,7 @@ public class PauseBtn : Button
         _sprite = content.Load<Texture2D>("continue_btn");
         _currentSprite = _sprite;
         _spriteHover = content.Load<Texture2D>("continue_btn_hover");
-        _position = new Vector2(960 - _sprite.Width / 2, 740 - _sprite.Height / 2);
+        _position = new Vector2(960 - _sprite.Width / 2, 500 - _sprite.Height / 2);
         _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _sprite.Width, _sprite.Height);
     }
 
@@ -129,7 +129,7 @@ public class PauseBtn : Button
     {
         if (EnterButton())
         {
-            Game1.State = State.Pause;
+            Game1.State = State.Game;
             IsClick = true;
         }
     }

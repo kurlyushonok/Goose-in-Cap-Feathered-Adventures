@@ -66,11 +66,11 @@ public class Game1 : Game
             case State.Final:
                 _gameController.FinalUpdate();
                 break;
+            
+            case State.Pause:
+                _gameController.PauseUpdate();
+                break;
         }
-        
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-            Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
 
         base.Update(gameTime);
     }
@@ -86,8 +86,13 @@ public class Game1 : Game
             case State.Game:
                 _gameDrawer.DrawGame(_gameController.Race);
                 break;
+            
             case State.Final:
                 _gameDrawer.DrawFinal(_gameController.Final);
+                break;
+            
+            case State.Pause:
+                _gameDrawer.DrawPause(_gameController.Pause);
                 break;
         }
         base.Draw(gameTime);
