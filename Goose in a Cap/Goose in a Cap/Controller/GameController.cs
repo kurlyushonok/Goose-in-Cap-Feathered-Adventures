@@ -13,31 +13,29 @@ public class GameController
     private MainMenu _menu;
     private Final _final;
     private Pause _pause;
-    private Store _store;
+    private Shop _shop;
         
     private GameDrawer _gameDrawer;
-    private ContentLoad _loader;
     private Player _player;
 
     private bool _isJump;
 
-    public GameController(GameDrawer gameDrawer, ContentLoad loader, Player player)
+    public GameController(GameDrawer gameDrawer, Player player)
     {
         _gameDrawer = gameDrawer;
-        _loader = loader;
         _player = player;
-        _race = new Race(gameDrawer.ContentManager, player.Character.Level);
+        _race = new Race(gameDrawer.ContentManager, player.Character.RunningLevel, player.Character.FlightLevel);
         _menu = new MainMenu(gameDrawer.ContentManager);
         _final = new Final(_gameDrawer.ContentManager);
         _pause = new Pause(_gameDrawer.ContentManager);
-        _store = new Store(_gameDrawer.ContentManager);
+        _shop = new Shop(_gameDrawer.ContentManager);
     }
 
     public Race Race  => _race;
     public MainMenu Menu => _menu;
     public Final Final => _final;
     public Pause Pause => _pause;
-    public Store Store => _store;
+    public Shop Shop => _shop;
     public bool IsRunning { get; set; }
 
     public void MenuUpdate()
@@ -89,7 +87,7 @@ public class GameController
         if (_pause.PauseButton.IsClick) IsRunning = true;
     }
 
-    public void StoreUpdate()
+    public void ShopUpdate()
     {
         
     }
@@ -124,7 +122,7 @@ public class GameController
     
         if (!_isJump)
         {
-            if (_race.CharacterPosition.Y < _race.RunningLevel) _race.CharacterPosition.Y += _race.JumpSpeed;
+            if (_race.CharacterPosition.Y < _race.RunningRunningLevel) _race.CharacterPosition.Y += _race.JumpSpeed;
             else
             {
                 _gameDrawer.CanLand = true;
@@ -141,7 +139,7 @@ public class GameController
     private void CheckCollision()
     {
         if (_gameDrawer.Let != null && _race.CharacterPosition.Y >= _gameDrawer.Let.Height &&
-            (_race.CharacterPosition.X + _race.Character.FrameRunWidth - 10 >= _gameDrawer.Let.CurrentPosition && 
+            (_race.CharacterPosition.X + _race.Character.FrameRunWidth - _race.Character.Padding >= _gameDrawer.Let.CurrentPosition && 
              _race.CharacterPosition.X <= _gameDrawer.Let.CurrentPosition + _gameDrawer.Let.Width))
         {
             _gameDrawer.IsCollision = true;

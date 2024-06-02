@@ -18,8 +18,10 @@ public class Goose
     private bool _isSelected = true;
     private bool _isPayed = true;
 
-    protected int _level = 520;
+    protected int _runningLevel = 520;
+    protected int _fligthLevel = 140;
     protected int _price = 0;
+    protected int _padding = 10;
 
     public Goose(ContentManager content)
     {
@@ -30,7 +32,9 @@ public class Goose
     public bool IsSelected { get; set; }
     public bool IsPayed { get; set; }
 
-    public int Level => _level;
+    public int RunningLevel => _runningLevel;
+    public int FlightLevel => _fligthLevel;
+    public int Padding => _padding;
 
     public Texture2D RunSprite
     {
@@ -81,8 +85,9 @@ public class GooseFrog : Goose
     {
         _runSprite = content.Load<Texture2D>("goose_run_frog");
         _jumpSprite = content.Load<Texture2D>("goose_jump_frog");
-        _level = 490;
+        _runningLevel = 490;
         _price = 15;
+        _padding = 15;
     }
 }
 
@@ -94,7 +99,9 @@ public class GooseFlower : Goose
     {
         _runSprite = content.Load<Texture2D>("goose_run_flower");
         _jumpSprite = content.Load<Texture2D>("goose_jump_flower");
-        _level = 490;
+        _runningLevel = 490;
         _price = 20;
+        _padding = 25;
+        _fligthLevel = 130;
     }
 }

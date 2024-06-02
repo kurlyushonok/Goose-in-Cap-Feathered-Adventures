@@ -11,8 +11,7 @@ public class Game1 : Game
     
     private GraphicsDeviceManager _graphics;
     private static SpriteBatch _spriteBatch;
-
-    private ContentLoad _loader = new ContentLoad();
+    
     private GameDrawer _gameDrawer;
     private GameController _gameController;
 
@@ -40,7 +39,7 @@ public class Game1 : Game
         {
             Font26 = Content.Load<SpriteFont>("CoinsFont")
         };
-        _gameController = new GameController(_gameDrawer, _loader, player);
+        _gameController = new GameController(_gameDrawer, player);
 
         _gameController.InitializeCharacter();
     }
@@ -78,6 +77,10 @@ public class Game1 : Game
                 _gameDrawer.CurrentCorralTime = 0;
                 _gameController.PauseUpdate();
                 break;
+            
+            case State.Shop:
+                _gameController.ShopUpdate();
+                break;
         }
 
         base.Update(gameTime);
@@ -101,6 +104,10 @@ public class Game1 : Game
             
             case State.Pause:
                 _gameDrawer.DrawPause(_gameController.Pause);
+                break;
+            
+            case State.Shop:
+                _gameDrawer.DrawShop(_gameController.Shop);
                 break;
         }
         base.Draw(gameTime);

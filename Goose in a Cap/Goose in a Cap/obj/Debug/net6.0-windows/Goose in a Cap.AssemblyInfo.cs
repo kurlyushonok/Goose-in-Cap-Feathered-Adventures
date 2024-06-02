@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Goose in a Cap")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e57b7ed90763593c656759e4fe1eb3818a87f108")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32f72508c68c584832919d20e549e3889c556e7e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Goose in a Cap")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Goose in a Cap")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

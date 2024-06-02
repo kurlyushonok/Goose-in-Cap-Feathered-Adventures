@@ -10,6 +10,6 @@ public class Player
 
     public Player(ContentManager content)
     {
-        Character = new Goose(content);
+        Character = new GooseFlower(content);
     }
 }

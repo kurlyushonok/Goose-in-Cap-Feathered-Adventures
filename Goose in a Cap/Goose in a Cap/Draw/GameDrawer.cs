@@ -14,8 +14,9 @@ public class GameDrawer
     private readonly Texture2D _scoreSprite;
     private readonly Texture2D _mainMenuSprite;
     private readonly Texture2D _corral;
+    private readonly Texture2D _shopBckg;
     
-    private readonly int _environmentSpeed = 10;
+    private readonly int _environmentSpeed = 12;
     private readonly int _skySpeed = 1;
     private readonly int _runPeriod = 75;
     private readonly int _corralPeriod = 150;
@@ -50,6 +51,7 @@ public class GameDrawer
         _scoreSprite = content.Load<Texture2D>("score");
         _mainMenuSprite = content.Load<Texture2D>("start_screen");
         _corral = content.Load<Texture2D>("corral");
+        _shopBckg = content.Load<Texture2D>("store_screen");
         _player = player;
         ContentManager = content;
     }
@@ -151,6 +153,15 @@ public class GameDrawer
 
         _spriteBatch.End();
     }
+
+    public void DrawShop(Shop shop)
+    {
+        _spriteBatch.Begin();
+        
+        DrawShopBckg();
+        
+        _spriteBatch.End();
+    }
     
     public void DrawCharacter(Goose goose)
     {
@@ -162,6 +173,16 @@ public class GameDrawer
     private void DrawMainMenuBckg()
     {
         _spriteBatch.Draw(_mainMenuSprite, Vector2.Zero, Color.White);
+    }
+
+    private void DrawShopBckg()
+    {
+        _spriteBatch.Draw(_shopBckg, Vector2.Zero, Color.White);
+    }
+
+    private void DrawCard(Card card)
+    {
+        
     }
 
     private void DrawCorral()

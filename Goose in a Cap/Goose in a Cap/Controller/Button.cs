@@ -56,7 +56,7 @@ public class Button
     }
 }
 
-public partial class StoreBtn : Button
+public class StoreBtn : Button
 {
     public bool IsClick { get; set; }
     public StoreBtn(ContentManager content) : base(content)
@@ -66,6 +66,15 @@ public partial class StoreBtn : Button
         _spriteHover = content.Load<Texture2D>("srore_btn_hover");
         _position = new Vector2(960 - _sprite.Width / 2, 620 - _sprite.Height / 2);
         _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _sprite.Width, _sprite.Height);
+    }
+    
+    public void ExecuteOnClick()
+    {
+        if (EnterButton())
+        {
+            Game1.State = State.Shop;
+            IsClick = true;
+        }
     }
 }
 
