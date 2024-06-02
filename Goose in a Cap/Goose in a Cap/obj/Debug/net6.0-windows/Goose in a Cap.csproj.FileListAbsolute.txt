@@ -39,7 +39,6 @@ C:\Users\Оля\RiderProjects\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-win
 C:\Users\Оля\RiderProjects\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_run_sprite.xnb
 C:\Users\Оля\RiderProjects\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\background_sprite.xnb
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_jump.xnb
-C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_run_sprite.xnb
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Goose in a Cap.exe
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Goose in a Cap.deps.json
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Goose in a Cap.runtimeconfig.json
@@ -107,3 +106,15 @@ C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a 
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\srore_btn_hover.xnb
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\to_menu_btn_hover.xnb
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\corral.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\choose_btn.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_base.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_flower.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_frog.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_jump_flower.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_jump_frog.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_run.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_run_flower.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\goose_run_frog.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\not_pay_btn.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\pay_btn.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\selected_btn.xnb

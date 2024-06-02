@@ -10,17 +10,19 @@ namespace GooseInCap;
 
 public class Race
 {
-    public Vector2 CharacterPosition = new Vector2(250, 520);
-    private int _runningLevel = 520;
+    public Vector2 CharacterPosition;
+    private int _runningLevel;
     private int _flightLevel = 150;
     private int _jumpSpeed = 22;
     private int _currentCountCoins = 0;
     private int _pointsConst = 1;
     private Coin _coin;
 
-    public Race(ContentManager content)
+    public Race(ContentManager content, int level)
     {
         _coin = new Coin(content);
+        CharacterPosition = new Vector2(250, level);
+        _runningLevel = level;
     }
 
     public int CountCoins

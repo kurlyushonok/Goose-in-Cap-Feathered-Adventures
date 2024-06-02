@@ -13,6 +13,7 @@ public class GameController
     private MainMenu _menu;
     private Final _final;
     private Pause _pause;
+    private Store _store;
         
     private GameDrawer _gameDrawer;
     private ContentLoad _loader;
@@ -25,16 +26,18 @@ public class GameController
         _gameDrawer = gameDrawer;
         _loader = loader;
         _player = player;
-        _race = new Race(gameDrawer.ContentManager);
+        _race = new Race(gameDrawer.ContentManager, player.Character.Level);
         _menu = new MainMenu(gameDrawer.ContentManager);
         _final = new Final(_gameDrawer.ContentManager);
         _pause = new Pause(_gameDrawer.ContentManager);
+        _store = new Store(_gameDrawer.ContentManager);
     }
 
     public Race Race  => _race;
     public MainMenu Menu => _menu;
     public Final Final => _final;
     public Pause Pause => _pause;
+    public Store Store => _store;
     public bool IsRunning { get; set; }
 
     public void MenuUpdate()
@@ -86,10 +89,14 @@ public class GameController
         if (_pause.PauseButton.IsClick) IsRunning = true;
     }
 
+    public void StoreUpdate()
+    {
+        
+    }
+
     public void InitializeCharacter()
     {
-        _race.Character = ChooseGoose(); //эта строчка заменится на отслеживание интерфейса
-        //TODO сделать дефолтную инициализацию гуся
+        _race.Character = _player.Character;
         
         _gameDrawer.DrawCharacter(_race.Character);
     }

@@ -56,7 +56,7 @@ public class Button
     }
 }
 
-public class StoreBtn : Button
+public partial class StoreBtn : Button
 {
     public bool IsClick { get; set; }
     public StoreBtn(ContentManager content) : base(content)
@@ -130,6 +130,49 @@ public class PauseBtn : Button
         if (EnterButton())
         {
             Game1.State = State.Game;
+            IsClick = true;
+        }
+    }
+}
+
+public class PayBtn : Button
+{
+    public bool IsClick { get; set; }
+    
+    private Texture2D _notPaySprite;
+    private Texture2D _selectedSprite;
+    private Texture2D _chooseSprite;
+    private StateBuy _state = StateBuy.Buy;
+    public PayBtn(ContentManager content) : base(content)
+    {
+        _sprite = content.Load<Texture2D>("pay_btn");
+        _currentSprite = _sprite;
+        _notPaySprite = content.Load<Texture2D>("not_pay_btn");
+        _selectedSprite = content.Load<Texture2D>("selected_btn");
+        _chooseSprite = content.Load<Texture2D>("choose_btn");
+    }
+
+    public void GetStateBuy(int coins, int price, bool isSelected, bool isPay)
+    {
+        if (coins >= price && !isSelected && !isPay)
+        {
+            _currentSprite = _sprite;
+            return;
+        }
+        if (coins < price && !isSelected && !isPay)
+        {
+            _currentSprite = _notPaySprite;
+            return;
+        }
+
+        if (isPay && !isSelected) _currentSprite = _chooseSprite;
+        if (isSelected) _currentSprite = _selectedSprite;
+    }
+    
+    public void ExecuteOnClick()
+    {
+        if (EnterButton())
+        {
             IsClick = true;
         }
     }

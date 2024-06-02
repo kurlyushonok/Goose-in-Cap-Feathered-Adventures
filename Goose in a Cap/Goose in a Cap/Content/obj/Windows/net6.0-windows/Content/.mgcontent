@@ -11,6 +11,7 @@
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/burdock.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/cabbage.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/carrot.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/choose_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/coin.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/continue_btn_hover.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/continue_btn.png</File>
@@ -20,15 +21,25 @@
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/File.spritefont</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/flowers_big.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/flowers_small.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_base.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_flower.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_frog.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_jump_flower.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_jump_frog.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_jump.png</File>
-    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_run_sprite.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_run_flower.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_run_frog.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_run.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/grandmother.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/not_pay_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/p3nechaev.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/pay_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/play_btn_hover.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/play_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/replay_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/replay_hover.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/score.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/selected_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/srore_btn_hover.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/start_screen.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/stone.png</File>
@@ -50,7 +61,18 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>CoinsFont.spritefont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
