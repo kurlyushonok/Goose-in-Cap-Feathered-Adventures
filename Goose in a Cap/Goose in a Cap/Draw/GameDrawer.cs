@@ -154,11 +154,16 @@ public class GameDrawer
         _spriteBatch.End();
     }
 
-    public void DrawShop(Shop shop)
+    public void DrawShop(Shop shop, Player player)
     {
         _spriteBatch.Begin();
         
         DrawShopBckg();
+        DrawCard(shop.BaseCard);
+        DrawCard(shop.FrogCard);
+        DrawCard(shop.FlowerCard);
+        DrawButton(shop.Button);
+        DrawCoinInShop(shop, player);
         
         _spriteBatch.End();
     }
@@ -182,7 +187,15 @@ public class GameDrawer
 
     private void DrawCard(Card card)
     {
-        
+        _spriteBatch.Draw(card.Background, card.CardPosition, Color.White);
+        _spriteBatch.Draw(card.Button.Sprite, card.ButtonPosition, Color.White);
+    }
+
+    private void DrawCoinInShop(Shop shop, Player player)
+    {
+        _spriteBatch.Draw(shop.Coin, shop.CoinPosition, Color.White);
+        _spriteBatch.DrawString(Font26, player.CountCoins.ToString(), 
+            shop.CoinTextPosition, Color.Black);
     }
 
     private void DrawCorral()

@@ -107,7 +107,7 @@ public class Game1 : Game
                 break;
             
             case State.Shop:
-                _gameDrawer.DrawShop(_gameController.Shop);
+                _gameDrawer.DrawShop(_gameController.Shop, _gameController.Player);
                 break;
         }
         base.Draw(gameTime);

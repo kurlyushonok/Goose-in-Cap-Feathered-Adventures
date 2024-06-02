@@ -13,11 +13,11 @@ public class Card
     public Vector2 CardPosition => _cardPosition;
     public Vector2 ButtonPosition => _buttonPosition;
 
-    public Card(ContentManager content, string spriteName, Vector2 position)
+    public Card(ContentManager content, string spriteName, Vector2 cardPosition, Vector2 btnPosition)
     {
         Background = content.Load<Texture2D>(spriteName);
         Button = new PayBtn(content);
-        _buttonPosition = Button.Position;
-        _cardPosition = position;
+        _buttonPosition = btnPosition;
+        _cardPosition = cardPosition;
     }
 }

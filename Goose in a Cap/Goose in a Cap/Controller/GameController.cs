@@ -36,6 +36,7 @@ public class GameController
     public Final Final => _final;
     public Pause Pause => _pause;
     public Shop Shop => _shop;
+    public Player Player => _player;
     public bool IsRunning { get; set; }
 
     public void MenuUpdate()
@@ -155,7 +156,6 @@ public class GameController
             && _race.Coin.CurrentPosition >= _race.CharacterPosition.X
             && _race.Coin.Level <= _race.CharacterPosition.Y + _race.Character.FrameRunHeight)
         {
-            _player.CountCoins += 1;
             _race.CountCoins += 1;
             _race.Coin.CurrentPosition = _race.Coin.CountOvercomeLets(_gameDrawer.Let);
         }

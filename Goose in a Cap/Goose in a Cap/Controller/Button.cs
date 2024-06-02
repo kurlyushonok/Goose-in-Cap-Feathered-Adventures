@@ -122,6 +122,14 @@ public class BackBtn : Button
     }
 }
 
+public class BackBtnInShop : BackBtn
+{
+    public BackBtnInShop(ContentManager content) : base(content)
+    {
+        _position = new Vector2(960 - _sprite.Width / 2, 925);
+    }
+}
+
 public class PauseBtn : Button
 {
     public bool IsClick { get; set; }
@@ -176,6 +184,11 @@ public class PayBtn : Button
 
         if (isPay && !isSelected) _currentSprite = _chooseSprite;
         if (isSelected) _currentSprite = _selectedSprite;
+    }
+
+    public void SetBasicState()
+    {
+        _currentSprite = _selectedSprite;
     }
     
     public void ExecuteOnClick()

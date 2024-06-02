@@ -6,12 +6,38 @@ namespace GooseInCap;
 
 public class Shop
 {
-    public Card BaseCard { get; set; }
-    public Card FrogCard { get; set; }
-    public Card FlowerCard { get; set; }
+    private int _distance = 540;
+    private int _distanceBtn = 550;
+    private int _startPositionCard = 150;
+    private int _startPositionButton = 320;
+    private int _cardPositionY = 280;
+    private int _btnPositionY = 830;
+    private BackBtnInShop _button;
+    private Texture2D _coin;
+    private Vector2 _coinPosition = new Vector2(120, 100);
+    private Vector2 _coinTextPosition = new Vector2(180, 100);
+    
+    public Card BaseCard { get; private set; }
+    public Card FrogCard { get; private set; }
+    public Card FlowerCard { get; private set; }
+    public BackBtn Button => _button;
+    public Texture2D Coin => _coin;
+    public Vector2 CoinPosition => _coinPosition;
+    public Vector2 CoinTextPosition => _coinTextPosition;
 
     public Shop(ContentManager content)
     {
-        BaseCard = new Card(content, "goose_base", new Vector2(120, 200));
+        _coin = content.Load<Texture2D>("coin_for_shop");
+        _button = new BackBtnInShop(content);
+        BaseCard = new Card(content, "goose_base", 
+            new Vector2(_startPositionCard, _cardPositionY), 
+            new Vector2(_startPositionButton, _btnPositionY));
+        BaseCard.Button.SetBasicState();
+        FrogCard = new Card(content, "goose_frog", 
+            new Vector2(_startPositionCard + _distance, _cardPositionY), 
+            new Vector2(_startPositionButton + _distanceBtn, _btnPositionY));
+        FlowerCard = new Card(content, "goose_flower", 
+            new Vector2(_startPositionCard + 2 * _distance, _cardPositionY), 
+            new Vector2(_startPositionButton + 2 * _distanceBtn, _btnPositionY));
     }
 }
