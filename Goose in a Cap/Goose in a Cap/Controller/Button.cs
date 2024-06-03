@@ -127,6 +127,7 @@ public class BackBtnInShop : BackBtn
     public BackBtnInShop(ContentManager content) : base(content)
     {
         _position = new Vector2(960 - _sprite.Width / 2, 925);
+        _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _sprite.Width, _sprite.Height);
     }
 }
 
@@ -159,38 +160,36 @@ public class PayBtn : Button
     private Texture2D _notPaySprite;
     private Texture2D _selectedSprite;
     private Texture2D _chooseSprite;
-    private StateBuy _state = StateBuy.Buy;
-    public PayBtn(ContentManager content) : base(content)
+    
+    public PayBtn(ContentManager content, Vector2 position) : base(content)
     {
         _sprite = content.Load<Texture2D>("pay_btn");
         _currentSprite = _sprite;
         _notPaySprite = content.Load<Texture2D>("not_pay_btn");
         _selectedSprite = content.Load<Texture2D>("selected_btn");
         _chooseSprite = content.Load<Texture2D>("choose_btn");
+        _btnRectangle = new Rectangle((int)position.X, (int)position.Y, _sprite.Width, _sprite.Height);
     }
 
-    public void GetStateBuy(int coins, int price, bool isSelected, bool isPay)
+    public void GetStateBuy(StateBuy state)
     {
-        if (coins >= price && !isSelected && !isPay)
+        switch (state)
         {
-            _currentSprite = _sprite;
-            return;
+            case StateBuy.Buy:
+                _currentSprite = _sprite;
+                break;
+            case StateBuy.NotBuy:
+                _currentSprite = _notPaySprite;
+                break;
+            case StateBuy.Choose:
+                _currentSprite = _chooseSprite;
+                break;
+            case StateBuy.Selected:
+                _currentSprite = _selectedSprite;
+                break;
         }
-        if (coins < price && !isSelected && !isPay)
-        {
-            _currentSprite = _notPaySprite;
-            return;
-        }
-
-        if (isPay && !isSelected) _currentSprite = _chooseSprite;
-        if (isSelected) _currentSprite = _selectedSprite;
     }
 
-    public void SetBasicState()
-    {
-        _currentSprite = _selectedSprite;
-    }
-    
     public void ExecuteOnClick()
     {
         if (EnterButton())

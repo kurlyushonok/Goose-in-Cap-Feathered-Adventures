@@ -88,7 +88,29 @@ public class GameController
         if (_pause.PauseButton.IsClick) IsRunning = true;
     }
 
+    //TODO доделать обновление магазина
     public void ShopUpdate()
+    {
+        _shop.Button.ExecuteOnClick();
+        
+        GetCardSprite(_shop.BaseCard);
+        GetCardSprite(_shop.FrogCard);
+        GetCardSprite(_shop.FlowerCard);
+    }
+
+    public void GetCardSprite(Card card)
+    {
+        if (card.Price > _player.CountCoins && !card.IsPay && !card.IsSelected)
+            card.Button.GetStateBuy(StateBuy.NotBuy);
+        if (card.Price <= _player.CountCoins && !card.IsPay && !card.IsSelected)
+            card.Button.GetStateBuy(StateBuy.Buy);
+        if (card.IsPay && !card.IsSelected)
+            card.Button.GetStateBuy(StateBuy.Choose);
+        if (card.IsSelected)
+            card.Button.GetStateBuy(StateBuy.Selected);
+    }
+
+    public void CheckSetCard()
     {
         
     }

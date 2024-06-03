@@ -31,13 +31,15 @@ public class Shop
         _button = new BackBtnInShop(content);
         BaseCard = new Card(content, "goose_base", 
             new Vector2(_startPositionCard, _cardPositionY), 
-            new Vector2(_startPositionButton, _btnPositionY));
-        BaseCard.Button.SetBasicState();
+            new Vector2(_startPositionButton, _btnPositionY), 0);
+        BaseCard.IsPay = true;
+        BaseCard.IsSelected = true;
+        // BaseCard.Button.SetBasicState();
         FrogCard = new Card(content, "goose_frog", 
             new Vector2(_startPositionCard + _distance, _cardPositionY), 
-            new Vector2(_startPositionButton + _distanceBtn, _btnPositionY));
+            new Vector2(_startPositionButton + _distanceBtn, _btnPositionY), 15);
         FlowerCard = new Card(content, "goose_flower", 
             new Vector2(_startPositionCard + 2 * _distance, _cardPositionY), 
-            new Vector2(_startPositionButton + 2 * _distanceBtn, _btnPositionY));
+            new Vector2(_startPositionButton + 2 * _distanceBtn, _btnPositionY), 20);
     }
 }

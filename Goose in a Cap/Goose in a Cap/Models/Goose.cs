@@ -20,7 +20,6 @@ public class Goose
 
     protected int _runningLevel = 520;
     protected int _fligthLevel = 140;
-    protected int _price = 0;
     protected int _padding = 10;
 
     public Goose(ContentManager content)
@@ -86,7 +85,6 @@ public class GooseFrog : Goose
         _runSprite = content.Load<Texture2D>("goose_run_frog");
         _jumpSprite = content.Load<Texture2D>("goose_jump_frog");
         _runningLevel = 490;
-        _price = 15;
         _padding = 15;
     }
 }
@@ -100,7 +98,6 @@ public class GooseFlower : Goose
         _runSprite = content.Load<Texture2D>("goose_run_flower");
         _jumpSprite = content.Load<Texture2D>("goose_jump_flower");
         _runningLevel = 490;
-        _price = 20;
         _padding = 25;
         _fligthLevel = 130;
     }
