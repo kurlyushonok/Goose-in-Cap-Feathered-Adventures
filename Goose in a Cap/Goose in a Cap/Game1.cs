@@ -34,7 +34,7 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        var player = new Player(Content);
+        var player = new Player();
         _gameDrawer = new GameDrawer(_spriteBatch, Content, player)
         {
             Font26 = Content.Load<SpriteFont>("CoinsFont")

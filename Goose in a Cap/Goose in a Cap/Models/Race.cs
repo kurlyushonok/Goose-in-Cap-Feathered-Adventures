@@ -25,6 +25,11 @@ public class Race
         _runningRunningLevel = runningLevel;
         _flightLevel = flightLevel;
     }
+    
+    public void SetCharacter(Goose goose)
+    {
+        Character = goose;
+    }
 
     public int CountCoins
     {

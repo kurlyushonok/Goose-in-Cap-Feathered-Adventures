@@ -16,14 +16,16 @@ public class Card
     public bool IsPay { get; set; }
     public bool IsSelected { get; set; }
     public StateBuy State { get; set; }
+    public Goose Character { get; private set; }
 
     public Card(ContentManager content, string spriteName, 
-        Vector2 cardPosition, Vector2 btnPosition, int price)
+        Vector2 cardPosition, Vector2 btnPosition, int price, Goose character)
     {
         Background = content.Load<Texture2D>(spriteName);
         Button = new PayBtn(content, btnPosition);
         _buttonPosition = btnPosition;
         _cardPosition = cardPosition;
         Price = price;
+        Character = character;
     }
 }

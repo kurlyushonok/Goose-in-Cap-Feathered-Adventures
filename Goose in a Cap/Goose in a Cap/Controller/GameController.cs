@@ -23,12 +23,14 @@ public class GameController
     public GameController(GameDrawer gameDrawer, Player player)
     {
         _gameDrawer = gameDrawer;
-        _player = player;
-        _race = new Race(gameDrawer.ContentManager, player.Character.RunningLevel, player.Character.FlightLevel);
         _menu = new MainMenu(gameDrawer.ContentManager);
         _final = new Final(_gameDrawer.ContentManager);
         _pause = new Pause(_gameDrawer.ContentManager);
         _shop = new Shop(_gameDrawer.ContentManager);
+        _player = player;
+        _race = new Race(gameDrawer.ContentManager, _shop.BaseCard.Character.RunningLevel, 
+            _shop.BaseCard.Character.FlightLevel);
+        _race.SetCharacter(_shop.BaseCard.Character);
     }
 
     public Race Race  => _race;
@@ -122,8 +124,14 @@ public class GameController
     {
         if (cardForCheck.Button.IsClick)
         {
-            cardForCheck.IsPay = true;
+            if (!cardForCheck.IsPay)
+            {
+                cardForCheck.IsPay = true;
+                _player.CountCoins -= cardForCheck.Price;
+            }
             cardForCheck.IsSelected = true;
+            _race.SetCharacter(cardForCheck.Character);
+            _gameDrawer.DrawCharacter(_race.Character);
 
             other1.IsSelected = false;
             other1.Button.IsClick = false;
@@ -135,8 +143,6 @@ public class GameController
 
     public void InitializeCharacter()
     {
-        _race.Character = _player.Character;
-        
         _gameDrawer.DrawCharacter(_race.Character);
     }
     

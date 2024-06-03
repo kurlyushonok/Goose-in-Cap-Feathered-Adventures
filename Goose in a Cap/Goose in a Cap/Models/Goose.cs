@@ -19,7 +19,7 @@ public class Goose
     private bool _isPayed = true;
 
     protected int _runningLevel = 520;
-    protected int _fligthLevel = 140;
+    protected int _fligthLevel = 150;
     protected int _padding = 10;
 
     public Goose(ContentManager content)
@@ -27,9 +27,6 @@ public class Goose
         _runSprite = content.Load<Texture2D>("goose_run");
         _jumpSprite = content.Load<Texture2D>("goose_jump");
     }
-    
-    public bool IsSelected { get; set; }
-    public bool IsPayed { get; set; }
 
     public int RunningLevel => _runningLevel;
     public int FlightLevel => _fligthLevel;
