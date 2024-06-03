@@ -15,6 +15,7 @@ public class Card
     public int Price { get; private set; }
     public bool IsPay { get; set; }
     public bool IsSelected { get; set; }
+    public StateBuy State { get; set; }
 
     public Card(ContentManager content, string spriteName, 
         Vector2 cardPosition, Vector2 btnPosition, int price)

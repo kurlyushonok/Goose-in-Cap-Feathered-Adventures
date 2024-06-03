@@ -165,34 +165,41 @@ public class PayBtn : Button
     {
         _sprite = content.Load<Texture2D>("pay_btn");
         _currentSprite = _sprite;
+        _position = position;
         _notPaySprite = content.Load<Texture2D>("not_pay_btn");
         _selectedSprite = content.Load<Texture2D>("selected_btn");
         _chooseSprite = content.Load<Texture2D>("choose_btn");
-        _btnRectangle = new Rectangle((int)position.X, (int)position.Y, _sprite.Width, _sprite.Height);
+        _spriteHover = content.Load<Texture2D>("pay_btn_hover");
+        _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _currentSprite.Width, _currentSprite.Height);
     }
 
-    public void GetStateBuy(StateBuy state)
+    public void GetStateBuy(StateBuy state, Card card)
     {
         switch (state)
         {
             case StateBuy.Buy:
                 _currentSprite = _sprite;
+                card.State = StateBuy.Buy;
                 break;
             case StateBuy.NotBuy:
                 _currentSprite = _notPaySprite;
+                card.State = StateBuy.NotBuy;
                 break;
             case StateBuy.Choose:
                 _currentSprite = _chooseSprite;
+                card.State = StateBuy.Choose;
                 break;
             case StateBuy.Selected:
                 _currentSprite = _selectedSprite;
+                card.State = StateBuy.Selected;
                 break;
         }
     }
 
-    public void ExecuteOnClick()
+    public void ExecuteOnClick(int coins, int price, StateBuy state)
     {
-        if (EnterButton())
+        if (EnterButton() && ((state == StateBuy.Buy && coins >= price)
+                              || (state == StateBuy.Choose)))
         {
             IsClick = true;
         }

@@ -120,3 +120,4 @@ C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a 
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\selected_btn.xnb
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\store_screen.xnb
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\coin_for_shop.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\pay_btn_hover.xnb

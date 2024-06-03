@@ -93,26 +93,44 @@ public class GameController
     {
         _shop.Button.ExecuteOnClick();
         
+        _shop.BaseCard.Button.ExecuteOnClick(_player.CountCoins, _shop.BaseCard.Price, _shop.BaseCard.State);
+        CheckSetCard(_shop.BaseCard, _shop.FrogCard, _shop.FlowerCard);
         GetCardSprite(_shop.BaseCard);
+        
+        _shop.FrogCard.Button.ExecuteOnClick(_player.CountCoins, _shop.FrogCard.Price, _shop.FrogCard.State);
+        CheckSetCard(_shop.FrogCard, _shop.BaseCard, _shop.FlowerCard);
         GetCardSprite(_shop.FrogCard);
+        
+        _shop.FlowerCard.Button.ExecuteOnClick(_player.CountCoins, _shop.FlowerCard.Price, _shop.FlowerCard.State);
+        CheckSetCard(_shop.FlowerCard, _shop.FrogCard, _shop.BaseCard);
         GetCardSprite(_shop.FlowerCard);
     }
 
     public void GetCardSprite(Card card)
     {
         if (card.Price > _player.CountCoins && !card.IsPay && !card.IsSelected)
-            card.Button.GetStateBuy(StateBuy.NotBuy);
+            card.Button.GetStateBuy(StateBuy.NotBuy, card);
         if (card.Price <= _player.CountCoins && !card.IsPay && !card.IsSelected)
-            card.Button.GetStateBuy(StateBuy.Buy);
+            card.Button.GetStateBuy(StateBuy.Buy, card);
         if (card.IsPay && !card.IsSelected)
-            card.Button.GetStateBuy(StateBuy.Choose);
+            card.Button.GetStateBuy(StateBuy.Choose, card);
         if (card.IsSelected)
-            card.Button.GetStateBuy(StateBuy.Selected);
+            card.Button.GetStateBuy(StateBuy.Selected, card);
     }
 
-    public void CheckSetCard()
+    public void CheckSetCard(Card cardForCheck, Card other1, Card other2)
     {
-        
+        if (cardForCheck.Button.IsClick)
+        {
+            cardForCheck.IsPay = true;
+            cardForCheck.IsSelected = true;
+
+            other1.IsSelected = false;
+            other1.Button.IsClick = false;
+            
+            other2.IsSelected = false;
+            other2.Button.IsClick = false;
+        }
     }
 
     public void InitializeCharacter()
