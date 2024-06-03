@@ -11,7 +11,7 @@ namespace GooseInCap;
 public class Race
 {
     public Vector2 CharacterPosition;
-    private int _runningRunningLevel;
+    private int _runningLevel;
     private int _flightLevel;
     private int _jumpSpeed = 22;
     private int _currentCountCoins = 0;
@@ -22,13 +22,16 @@ public class Race
     {
         _coin = new Coin(content);
         CharacterPosition = new Vector2(250, runningLevel);
-        _runningRunningLevel = runningLevel;
+        _runningLevel = runningLevel;
         _flightLevel = flightLevel;
     }
     
     public void SetCharacter(Goose goose)
     {
         Character = goose;
+        CharacterPosition = new Vector2(250, goose.RunningLevel);
+        _runningLevel = goose.RunningLevel;
+        _flightLevel = goose.FlightLevel;
     }
 
     public int CountCoins
@@ -41,7 +44,7 @@ public class Race
     public int Score { get; set; }
     public int NumberOfLetsPassed { get; set; }
 
-    public int RunningRunningLevel => _runningRunningLevel;
+    public int RunningLevel => _runningLevel;
     public int FlightLevel => _flightLevel;
     public int JumpSpeed => _jumpSpeed;
     public int PointsConst => _pointsConst;

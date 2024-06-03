@@ -145,11 +145,6 @@ public class GameController
     {
         _gameDrawer.DrawCharacter(_race.Character);
     }
-    
-    private Goose ChooseGoose()
-    {
-        return new Goose(_gameDrawer.ContentManager);
-    }
 
     private void Jump()
     {
@@ -163,13 +158,15 @@ public class GameController
     
         if (_isJump)
         {
-            if (_race.CharacterPosition.Y > _race.FlightLevel) _race.CharacterPosition.Y -= _race.JumpSpeed;
+            if (_race.CharacterPosition.Y > _race.FlightLevel) 
+                _race.CharacterPosition.Y -= _race.JumpSpeed;
             else _isJump = false;
         }
     
         if (!_isJump)
         {
-            if (_race.CharacterPosition.Y < _race.RunningRunningLevel) _race.CharacterPosition.Y += _race.JumpSpeed;
+            if (_race.CharacterPosition.Y < _race.RunningLevel) 
+                _race.CharacterPosition.Y += _race.JumpSpeed;
             else
             {
                 _gameDrawer.CanLand = true;
@@ -185,7 +182,8 @@ public class GameController
 
     private void CheckCollision()
     {
-        if (_gameDrawer.Let != null && _race.CharacterPosition.Y >= _gameDrawer.Let.Height &&
+        if (_gameDrawer.Let != null &&
+            (_race.CharacterPosition.Y + _race.Character.Padding >= _gameDrawer.Let.Height) &&
             (_race.CharacterPosition.X + _race.Character.FrameRunWidth - _race.Character.Padding >= _gameDrawer.Let.CurrentPosition && 
              _race.CharacterPosition.X <= _gameDrawer.Let.CurrentPosition + _gameDrawer.Let.Width))
         {
