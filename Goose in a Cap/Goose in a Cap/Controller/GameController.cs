@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace GooseInCap;
 
@@ -201,7 +202,8 @@ public class GameController
             && _race.Coin.Level <= _race.CharacterPosition.Y + _race.Character.FrameRunHeight)
         {
             _race.CountCoins += 1;
-            _race.Coin.CurrentPosition = _race.Coin.CountOvercomeLets(_gameDrawer.Let);
+            _race.Coin.CurrentPosition = _race.Coin.CountOvercomeLets();
+            MediaPlayer.Play(_race.Coin.Song);
         }
     }
 

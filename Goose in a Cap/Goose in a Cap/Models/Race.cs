@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Text.Json;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Media;
 
 namespace GooseInCap;
 
@@ -18,12 +19,15 @@ public class Race
     private int _pointsConst = 1;
     private Coin _coin;
 
+    public Song Song { get; private set; }
+
     public Race(ContentManager content, int runningLevel, int flightLevel)
     {
         _coin = new Coin(content);
         CharacterPosition = new Vector2(250, runningLevel);
         _runningLevel = runningLevel;
         _flightLevel = flightLevel;
+        Song = content.Load<Song>("race");
     }
     
     public void SetCharacter(Goose goose)

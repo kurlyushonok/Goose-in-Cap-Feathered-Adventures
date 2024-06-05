@@ -16,7 +16,7 @@ public class GameDrawer
     private readonly Texture2D _corral;
     private readonly Texture2D _shopBckg;
     
-    private readonly int _environmentSpeed = 12;
+    private int _environmentSpeed = 10;
     private readonly int _skySpeed = 1;
     private readonly int _runPeriod = 75;
     private readonly int _corralPeriod = 150;
@@ -132,6 +132,8 @@ public class GameDrawer
         if (_canLand) DrawCharacter(race);
 
         _spriteBatch.End();
+
+        if (race.Score % 3000 == 0) _environmentSpeed++;
     }
 
     public void DrawFinal(Final final)
@@ -143,6 +145,8 @@ public class GameDrawer
         DrawButton(final.BackButton);
         
         _spriteBatch.End();
+        
+        _environmentSpeed = 10;
     }
 
     public void DrawPause(Pause pause)
@@ -327,7 +331,7 @@ public class GameDrawer
         if (!IsCollision) race.Coin.CurrentPosition -= _environmentSpeed;
         if (race.Coin.CurrentPosition <= (0 - race.Coin.Sprite.Width))
         {
-            if (_let != null) race.Coin.CurrentPosition = race.Coin.CountOvercomeLets(_let);
+            if (_let != null) race.Coin.CurrentPosition = race.Coin.CountOvercomeLets();
         }
     }
 }

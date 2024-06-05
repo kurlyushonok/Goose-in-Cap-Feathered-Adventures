@@ -121,6 +121,12 @@
 /processorParam:TextureFormat=Color
 /build:coin_for_shop.png
 
+#begin coin_song.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:coin_song.mp3
+
 #begin coin.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -344,6 +350,30 @@
 /processorParam:TextureFormat=Color
 /build:grandmother.png
 
+#begin hat.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:hat.mp3
+
+#begin jump.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:jump.mp3
+
+#begin kr.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:kr.mp3
+
+#begin main_menu_shop.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:main_menu_shop.mp3
+
 #begin not_pay_btn.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -415,6 +445,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:play_btn.png
+
+#begin race.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:race.mp3
 
 #begin replay_btn.png
 /importer:TextureImporter

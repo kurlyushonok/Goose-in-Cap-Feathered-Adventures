@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace GooseInCap;
 
@@ -15,6 +16,7 @@ public class Coin
     public Coin(ContentManager content)
     {
         _sprite = content.Load<Texture2D>("coin");
+        Song = content.Load<Song>("coin_song");
     }
 
     public int CurrentPosition
@@ -27,10 +29,12 @@ public class Coin
 
     public Texture2D Sprite => _sprite;
 
-    public int CountOvercomeLets(Let let)
+    public int CountOvercomeLets()
     {
         var between = _rnd.Next(_distanceToLet, 1920 - _distanceToLet);
         var countLets = _rnd.Next(1, 3) * 1920;
         return between + countLets;
     }
+    
+    public Song Song { get; private set; }
 }

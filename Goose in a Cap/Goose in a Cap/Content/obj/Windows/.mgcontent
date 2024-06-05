@@ -13,6 +13,7 @@
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/carrot.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/choose_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/coin_for_shop.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/coin_song.mp3</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/coin.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/continue_btn_hover.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/continue_btn.png</File>
@@ -32,12 +33,17 @@
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_run_frog.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/goose_run.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/grandmother.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/hat.mp3</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/jump.mp3</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/kr.mp3</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/main_menu_shop.mp3</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/not_pay_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/p3nechaev.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/pay_btn_hover.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/pay_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/play_btn_hover.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/play_btn.png</File>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/race.mp3</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/replay_btn.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/replay_hover.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/score.png</File>
@@ -66,7 +72,13 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>CoinsFont.spritefont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
