@@ -19,7 +19,7 @@ public class Race
     private int _pointsConst = 1;
     private Coin _coin;
 
-    public Song Song { get; private set; }
+    public Song GameOverSong { get; private set; }
 
     public Race(ContentManager content, int runningLevel, int flightLevel)
     {
@@ -27,7 +27,7 @@ public class Race
         CharacterPosition = new Vector2(250, runningLevel);
         _runningLevel = runningLevel;
         _flightLevel = flightLevel;
-        Song = content.Load<Song>("race");
+        GameOverSong = content.Load<Song>("game_over");
     }
     
     public void SetCharacter(Goose goose)

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace GooseInCap;
 
@@ -26,11 +27,14 @@ public class Goose
     {
         _runSprite = content.Load<Texture2D>("goose_run");
         _jumpSprite = content.Load<Texture2D>("goose_jump");
+        JumpSong = content.Load<Song>("kr");
     }
 
     public int RunningLevel => _runningLevel;
     public int FlightLevel => _fligthLevel;
     public int Padding => _padding;
+    
+    public Song JumpSong { get; private set; }
 
     public Texture2D RunSprite
     {

@@ -96,15 +96,18 @@ public class GameController
     {
         _shop.Button.ExecuteOnClick();
         
-        _shop.BaseCard.Button.ExecuteOnClick(_player.CountCoins, _shop.BaseCard.Price, _shop.BaseCard.State);
+        _shop.BaseCard.Button.ExecuteOnClick(_player.CountCoins, _shop.BaseCard.Price, 
+            _shop.BaseCard.State, _shop.BaseCard);
         CheckSetCard(_shop.BaseCard, _shop.FrogCard, _shop.FlowerCard);
         GetCardSprite(_shop.BaseCard);
         
-        _shop.FrogCard.Button.ExecuteOnClick(_player.CountCoins, _shop.FrogCard.Price, _shop.FrogCard.State);
+        _shop.FrogCard.Button.ExecuteOnClick(_player.CountCoins, _shop.FrogCard.Price, 
+            _shop.FrogCard.State, _shop.FrogCard);
         CheckSetCard(_shop.FrogCard, _shop.BaseCard, _shop.FlowerCard);
         GetCardSprite(_shop.FrogCard);
         
-        _shop.FlowerCard.Button.ExecuteOnClick(_player.CountCoins, _shop.FlowerCard.Price, _shop.FlowerCard.State);
+        _shop.FlowerCard.Button.ExecuteOnClick(_player.CountCoins, _shop.FlowerCard.Price, 
+            _shop.FlowerCard.State, _shop.FlowerCard);
         CheckSetCard(_shop.FlowerCard, _shop.FrogCard, _shop.BaseCard);
         GetCardSprite(_shop.FlowerCard);
     }
@@ -130,6 +133,7 @@ public class GameController
                 cardForCheck.IsPay = true;
                 _player.CountCoins -= cardForCheck.Price;
             }
+
             cardForCheck.IsSelected = true;
             _race.SetCharacter(cardForCheck.Character);
             _gameDrawer.DrawCharacter(_race.Character);
@@ -153,6 +157,7 @@ public class GameController
              Keyboard.GetState().IsKeyDown(Keys.Space) ||
              Keyboard.GetState().IsKeyDown(Keys.W)) && _gameDrawer.CanJump)
         {
+            MediaPlayer.Play(_race.Character.JumpSong);
             _isJump = true;
             _gameDrawer.CanJump = false;
         }
@@ -188,6 +193,7 @@ public class GameController
             (_race.CharacterPosition.X + _race.Character.FrameRunWidth - _race.Character.Padding >= _gameDrawer.Let.CurrentPosition && 
              _race.CharacterPosition.X <= _gameDrawer.Let.CurrentPosition + _gameDrawer.Let.Width))
         {
+            MediaPlayer.Play(_race.GameOverSong);
             _gameDrawer.IsCollision = true;
             IsRunning = false;
             _gameDrawer.CanJump = false;

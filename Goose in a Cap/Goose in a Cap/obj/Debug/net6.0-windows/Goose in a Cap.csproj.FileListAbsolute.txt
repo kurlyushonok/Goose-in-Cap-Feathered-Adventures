@@ -134,3 +134,7 @@ C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a 
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\race.xnb
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\coin_song.wma
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\coin_song.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\btn.wma
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\btn.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\game_over.wma
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\game_over.xnb
