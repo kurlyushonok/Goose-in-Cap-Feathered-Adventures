@@ -75,6 +75,7 @@ public class GameController
             _gameDrawer.BackgroundEarthPosition = 0;
             _gameDrawer.BackgroundSkyPosition = 0;
             _gameDrawer.CurrentCorralPosition = 400;
+            _gameDrawer.CurrentGrandmotherPosition = 1000;
 
             IsRunning = true;
             
@@ -90,8 +91,7 @@ public class GameController
         _pause.PauseButton.ExecuteOnClick();
         if (_pause.PauseButton.IsClick) IsRunning = true;
     }
-
-    //TODO доделать обновление магазина
+    
     public void ShopUpdate()
     {
         _shop.Button.ExecuteOnClick();

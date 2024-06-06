@@ -4,6 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/angry_babka.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/background_earth.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/background_sky.png</File>
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/btn.mp3</File>
@@ -59,6 +60,7 @@
     <File>C:/Users/Оля/Documents/GitHub/Goose-in-a-Cap-Feathered-Adventures/Goose in a Cap/Goose in a Cap/Content/to_menu_btn.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -14,19 +14,24 @@ public class GameDrawer
     private readonly Texture2D _scoreSprite;
     private readonly Texture2D _mainMenuSprite;
     private readonly Texture2D _corral;
+    private readonly Texture2D _grandmother;
     private readonly Texture2D _shopBckg;
     
     private int _environmentSpeed = 10;
     private readonly int _skySpeed = 1;
     private readonly int _runPeriod = 75;
     private readonly int _corralPeriod = 150;
+    private readonly int _grandmotherPeriod = 150;
     private int _currentCorralPosition = 400;
+    private int _currentGranmotherPosition = 1000;
 
     private Point _currentFrame = new Point(0, 0);
     private Point _currentCharacterFrameSize;
     private Point _currentCharacterSpriteSize;
     private readonly Point _corralSize = new Point(2, 1);
     private Point _currentCorralFrame = new Point(0, 0);
+    private readonly Point _grandmotherSize = new Point(2, 1);
+    private Point _currentGrandmotherFrame = new Point(0, 0);
 
     private bool _canRun;
     private bool _canJump = true;
@@ -51,6 +56,7 @@ public class GameDrawer
         _scoreSprite = content.Load<Texture2D>("score");
         _mainMenuSprite = content.Load<Texture2D>("start_screen");
         _corral = content.Load<Texture2D>("corral");
+        _grandmother = content.Load<Texture2D>("angry_babka");
         _shopBckg = content.Load<Texture2D>("store_screen");
         _player = player;
         ContentManager = content;
@@ -70,18 +76,19 @@ public class GameDrawer
         set => _currentCorralPosition = value;
     }
 
+    public int CurrentGrandmotherPosition
+    {
+        get => _currentGranmotherPosition;
+        set => _currentGranmotherPosition = value;
+    }
+
     public bool IsCollision { get; set; }
-    public ContentManager ContentManager { get; set; }
-    
-    public Point CurrentFrame => _currentFrame;
-
-    public Texture2D CurrentCharacterSprite => _currentCharacterSprite;
-
-    public Point CurrentCharacterFrameSize  => _currentCharacterFrameSize;
+    public ContentManager ContentManager { get; private set; }
 
     public int CurrentTime { get; set; }
 
     public int CurrentCorralTime { get; set; }
+    public int CurrentGrandmotherTime { get; set; }
 
     public bool CanRun
     {
@@ -122,6 +129,7 @@ public class GameDrawer
         DrawEarth();
         DrawScoreSprite();
         if (_currentCorralPosition >= 0 - _corral.Width / 2) DrawCorral();
+        if (_currentGranmotherPosition >= 0 - _grandmother.Width / 2) DrawGrandmother();
         DrawLet(race);
         DrawCoin(race);
         DrawCoinsScore(race);
@@ -213,13 +221,33 @@ public class GameDrawer
                 _currentCorralFrame.X = 0;
             }
         }
-        var characterRectangle = new Rectangle(_currentCorralFrame.X * _corral.Width / 2,
+        var rectangle = new Rectangle(_currentCorralFrame.X * _corral.Width / 2,
             _currentCorralFrame.Y * _corral.Height,
             _corral.Width / 2, _corral.Height);
         
         _spriteBatch.Draw(_corral, new Vector2(CurrentCorralPosition, 520), 
-            characterRectangle, Color.White);
+            rectangle, Color.White);
         CurrentCorralPosition -= _environmentSpeed;
+    }
+    
+    private void DrawGrandmother()
+    {
+        if (CurrentGrandmotherTime > _grandmotherPeriod)
+        {
+            CurrentGrandmotherTime -= _grandmotherPeriod;
+            ++_currentGrandmotherFrame.X;
+            if (_currentGrandmotherFrame.X >= _grandmotherSize.X)
+            {
+                _currentGrandmotherFrame.X = 0;
+            }
+        }
+        var rectangle = new Rectangle(_currentGrandmotherFrame.X * _grandmother.Width / 2,
+            _currentGrandmotherFrame.Y * _grandmother.Height,
+            _grandmother.Width / 2, _grandmother.Height);
+        
+        _spriteBatch.Draw(_grandmother, new Vector2(CurrentGrandmotherPosition, 350), 
+            rectangle, Color.White);
+        CurrentGrandmotherPosition -= _environmentSpeed;
     }
 
     private void DrawButton(Button btn)

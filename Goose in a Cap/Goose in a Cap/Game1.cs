@@ -42,7 +42,6 @@ public class Game1 : Game
             Font26 = Content.Load<SpriteFont>("CoinsFont")
         };
         _gameController = new GameController(_gameDrawer, player);
-
         _gameController.InitializeCharacter();
     }
 
@@ -52,6 +51,7 @@ public class Game1 : Game
         {
             _gameDrawer.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
             _gameDrawer.CurrentCorralTime += gameTime.ElapsedGameTime.Milliseconds;
+            _gameDrawer.CurrentGrandmotherTime += gameTime.ElapsedGameTime.Milliseconds;
         }
         switch (State) 
         {
@@ -65,6 +65,7 @@ public class Game1 : Game
                 {
                     _gameDrawer.CurrentTime = 0;
                     _gameDrawer.CurrentCorralTime = 0;
+                    _gameDrawer.CurrentGrandmotherTime = 0;
                 }
                 _gameController.IsRunning = true;
                 _gameController.GameUpdate();
@@ -77,6 +78,7 @@ public class Game1 : Game
             case State.Pause:
                 _gameDrawer.CurrentTime = 0;
                 _gameDrawer.CurrentCorralTime = 0;
+                _gameDrawer.CurrentGrandmotherTime = 0;
                 _gameController.PauseUpdate();
                 break;
             
