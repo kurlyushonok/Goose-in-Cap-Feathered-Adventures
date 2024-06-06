@@ -15,6 +15,7 @@ public class GameController
     private Final _final;
     private Pause _pause;
     private Shop _shop;
+    private Clue _clue;
         
     private GameDrawer _gameDrawer;
     private Player _player;
@@ -32,6 +33,7 @@ public class GameController
         _race = new Race(gameDrawer.ContentManager, _shop.BaseCard.Character.RunningLevel, 
             _shop.BaseCard.Character.FlightLevel);
         _race.SetCharacter(_shop.BaseCard.Character);
+        _clue = new Clue(_gameDrawer.ContentManager);
     }
 
     public Race Race  => _race;
@@ -40,12 +42,14 @@ public class GameController
     public Pause Pause => _pause;
     public Shop Shop => _shop;
     public Player Player => _player;
+    public Clue CLue => _clue;
     public bool IsRunning { get; set; }
 
     public void MenuUpdate()
     {
         _menu.PlayButton.ExecuteOnClick();
         _menu.StoreButton.ExecuteOnClick();
+        _menu.ClueButton.ExecuteOnClick();
     }
 
     public void GameUpdate()
@@ -110,6 +114,11 @@ public class GameController
             _shop.FlowerCard.State, _shop.FlowerCard);
         CheckSetCard(_shop.FlowerCard, _shop.FrogCard, _shop.BaseCard);
         GetCardSprite(_shop.FlowerCard);
+    }
+
+    public void ClueUpdate()
+    {
+        _clue.Button.ExecuteOnClick();
     }
 
     public void GetCardSprite(Card card)

@@ -85,6 +85,10 @@ public class Game1 : Game
             case State.Shop:
                 _gameController.ShopUpdate();
                 break;
+            
+            case State.Clue:
+                _gameController.ClueUpdate();
+                break;
         }
 
         base.Update(gameTime);
@@ -112,6 +116,10 @@ public class Game1 : Game
             
             case State.Shop:
                 _gameDrawer.DrawShop(_gameController.Shop, _gameController.Player);
+                break;
+            
+            case State.Clue:
+                _gameDrawer.DrawClue(_gameController.CLue);
                 break;
         }
         base.Draw(gameTime);

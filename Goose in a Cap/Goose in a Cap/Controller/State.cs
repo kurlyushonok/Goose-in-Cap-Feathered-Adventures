@@ -6,5 +6,6 @@ public enum State
     Game, 
     Final, 
     Pause,
-    Shop
+    Shop,
+    Clue
 }

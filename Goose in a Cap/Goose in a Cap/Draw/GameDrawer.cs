@@ -118,6 +118,7 @@ public class GameDrawer
         DrawMainMenuBckg();
         DrawButton(menu.PlayButton);
         DrawButton(menu.StoreButton);
+        DrawButton(menu.ClueButton);
         
         _spriteBatch.End();
     }
@@ -142,7 +143,7 @@ public class GameDrawer
 
         _spriteBatch.End();
 
-        if (race.Score % 3000 == 0 && _environmentSpeed <= _maxSpeed) _environmentSpeed++;
+        if (race.Score % 1000 == 0 && _environmentSpeed <= _maxSpeed) _environmentSpeed++;
     }
 
     public void DrawFinal(Final final)
@@ -178,6 +179,17 @@ public class GameDrawer
         DrawButton(shop.Button);
         DrawCoinInShop(shop, player);
         
+        _spriteBatch.End();
+    }
+
+    public void DrawClue(Clue clue)
+    {
+        _spriteBatch.Begin();
+        
+        DrawMainMenuBckg();
+        _spriteBatch.Draw(clue.Text, clue.Position, Color.White);
+        DrawButton(clue.Button);
+
         _spriteBatch.End();
     }
     

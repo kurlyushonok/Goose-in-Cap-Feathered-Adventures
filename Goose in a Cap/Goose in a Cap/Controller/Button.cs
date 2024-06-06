@@ -139,6 +139,15 @@ public class BackBtnInShop : BackBtn
     }
 }
 
+public class BackBtnInClue : BackBtn
+{
+    public BackBtnInClue(ContentManager content) : base(content)
+    {
+        _position = new Vector2(960 - _sprite.Width / 2, 925);
+        _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _sprite.Width, _sprite.Height);
+    }
+}
+
 public class PauseBtn : Button
 {
     public bool IsClick { get; set; }
@@ -157,6 +166,29 @@ public class PauseBtn : Button
         {
             _song.Play();
             Game1.State = State.Game;
+            IsClick = true;
+        }
+    }
+}
+
+public class ClueBtn : Button
+{
+    public bool IsClick { get; set; }
+    public ClueBtn(ContentManager content) : base(content)
+    {
+        _sprite = content.Load<Texture2D>("clue");
+        _currentSprite = _sprite;
+        _spriteHover = content.Load<Texture2D>("clue_hover");
+        _position = new Vector2(960 - _sprite.Width / 2, 740 - _sprite.Height / 2);
+        _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _sprite.Width, _sprite.Height);
+    }
+    
+    public void ExecuteOnClick()
+    {
+        if (EnterButton())
+        {
+            _song.Play();
+            Game1.State = State.Clue;
             IsClick = true;
         }
     }

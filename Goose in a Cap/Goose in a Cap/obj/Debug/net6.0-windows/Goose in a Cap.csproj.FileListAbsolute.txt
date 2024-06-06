@@ -139,3 +139,6 @@ C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a 
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\game_over.wma
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\game_over.xnb
 C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\angry_babka.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\clue.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\clue_hover.xnb
+C:\Users\Оля\Documents\GitHub\Goose-in-a-Cap-Feathered-Adventures\Goose in a Cap\Goose in a Cap\bin\Debug\net6.0-windows\Content\clue_text.xnb
