@@ -22,7 +22,7 @@ public class Goose
 
     protected int _runningLevel = 520;
     protected int _fligthLevel = 150;
-    protected int _padding = 10;
+    protected int _padding = 15;
 
     public Goose(ContentManager content)
     {
@@ -85,7 +85,7 @@ public class GooseFrog : Goose
         _runSprite = content.Load<Texture2D>("goose_run_frog");
         _jumpSprite = content.Load<Texture2D>("goose_jump_frog");
         _runningLevel = 490;
-        _padding = 15;
+        _padding = 20;
     }
 }
 
