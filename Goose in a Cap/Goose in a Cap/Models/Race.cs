@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Text.Json;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 
@@ -19,15 +20,13 @@ public class Race
     private int _pointsConst = 1;
     private Coin _coin;
 
-    public Song GameOverSong { get; private set; }
-
     public Race(ContentManager content, int runningLevel, int flightLevel)
     {
         _coin = new Coin(content);
         CharacterPosition = new Vector2(250, runningLevel);
         _runningLevel = runningLevel;
         _flightLevel = flightLevel;
-        GameOverSong = content.Load<Song>("game_over");
+        GameOverSong = content.Load<SoundEffect>("game_over");
     }
     
     public void SetCharacter(Goose goose)
@@ -47,6 +46,7 @@ public class Race
     public Goose Character { get; set; }
     public int Score { get; set; }
     public int NumberOfLetsPassed { get; set; }
+    public SoundEffect GameOverSong { get; private set; }
 
     public int RunningLevel => _runningLevel;
     public int FlightLevel => _flightLevel;

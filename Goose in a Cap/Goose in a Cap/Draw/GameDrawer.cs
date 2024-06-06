@@ -18,6 +18,7 @@ public class GameDrawer
     private readonly Texture2D _shopBckg;
     
     private int _environmentSpeed = 10;
+    private int _maxSpeed = 17;
     private readonly int _skySpeed = 1;
     private readonly int _runPeriod = 75;
     private readonly int _corralPeriod = 150;
@@ -141,7 +142,7 @@ public class GameDrawer
 
         _spriteBatch.End();
 
-        if (race.Score % 3000 == 0) _environmentSpeed++;
+        if (race.Score % 3000 == 0 && _environmentSpeed <= _maxSpeed) _environmentSpeed++;
     }
 
     public void DrawFinal(Final final)
@@ -185,6 +186,20 @@ public class GameDrawer
         _currentCharacterSprite = goose.RunSprite;
         _currentCharacterFrameSize = new Point(goose.FrameRunWidth, goose.FrameRunHeight);
         _currentCharacterSpriteSize = goose.SpriteSizeRun;
+    }
+
+    public void UpdateTime(int time)
+    {
+        CurrentTime += time;
+        CurrentCorralTime += time;
+        CurrentGrandmotherTime += time;
+    }
+
+    public void ResetTime()
+    {
+        CurrentTime = 0;
+        CurrentCorralTime = 0;
+        CurrentGrandmotherTime = 0;
     }
 
     private void DrawMainMenuBckg()

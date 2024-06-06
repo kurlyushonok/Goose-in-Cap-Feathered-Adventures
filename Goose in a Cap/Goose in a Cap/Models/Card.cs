@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
@@ -18,7 +19,7 @@ public class Card
     public bool IsSelected { get; set; }
     public StateBuy State { get; set; }
     public Goose Character { get; private set; }
-    public Song PickSong { get; private set; }
+    public SoundEffect PickSong { get; private set; }
 
     public Card(ContentManager content, string spriteName, 
         Vector2 cardPosition, Vector2 btnPosition, int price, Goose character)
@@ -29,6 +30,6 @@ public class Card
         _cardPosition = cardPosition;
         Price = price;
         Character = character;
-        PickSong = content.Load<Song>("hat");
+        PickSong = content.Load<SoundEffect>("hat");
     }
 }

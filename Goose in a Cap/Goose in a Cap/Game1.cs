@@ -42,6 +42,12 @@ public class Game1 : Game
             Font26 = Content.Load<SpriteFont>("CoinsFont")
         };
         _gameController = new GameController(_gameDrawer, player);
+        
+        var song = Content.Load<Song>("race");
+        MediaPlayer.Play(song);
+        MediaPlayer.Volume = 0.4f;
+        MediaPlayer.IsRepeating = true;
+        
         _gameController.InitializeCharacter();
     }
 
@@ -49,9 +55,7 @@ public class Game1 : Game
     {
         if (_gameController.IsRunning)
         {
-            _gameDrawer.CurrentTime += gameTime.ElapsedGameTime.Milliseconds;
-            _gameDrawer.CurrentCorralTime += gameTime.ElapsedGameTime.Milliseconds;
-            _gameDrawer.CurrentGrandmotherTime += gameTime.ElapsedGameTime.Milliseconds;
+            _gameDrawer.UpdateTime(gameTime.ElapsedGameTime.Milliseconds);
         }
         switch (State) 
         {
@@ -63,9 +67,7 @@ public class Game1 : Game
                 if (_gameController.Final.ReplayButton.IsClick ||
                     _gameController.Final.BackButton.IsClick)
                 {
-                    _gameDrawer.CurrentTime = 0;
-                    _gameDrawer.CurrentCorralTime = 0;
-                    _gameDrawer.CurrentGrandmotherTime = 0;
+                    _gameDrawer.ResetTime();
                 }
                 _gameController.IsRunning = true;
                 _gameController.GameUpdate();
@@ -76,9 +78,7 @@ public class Game1 : Game
                 break;
             
             case State.Pause:
-                _gameDrawer.CurrentTime = 0;
-                _gameDrawer.CurrentCorralTime = 0;
-                _gameDrawer.CurrentGrandmotherTime = 0;
+                _gameDrawer.ResetTime();
                 _gameController.PauseUpdate();
                 break;
             

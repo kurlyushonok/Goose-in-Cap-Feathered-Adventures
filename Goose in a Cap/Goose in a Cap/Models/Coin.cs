@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
@@ -16,7 +17,7 @@ public class Coin
     public Coin(ContentManager content)
     {
         _sprite = content.Load<Texture2D>("coin");
-        Song = content.Load<Song>("coin_song");
+        Song = content.Load<SoundEffect>("coin_song");
     }
 
     public int CurrentPosition
@@ -36,5 +37,5 @@ public class Coin
         return between + countLets;
     }
     
-    public Song Song { get; private set; }
+    public SoundEffect Song { get; private set; }
 }

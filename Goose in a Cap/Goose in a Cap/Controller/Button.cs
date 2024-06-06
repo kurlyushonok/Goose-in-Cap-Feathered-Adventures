@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -15,7 +16,7 @@ public class Button
     protected Texture2D _currentSprite;
     protected Rectangle _btnRectangle;
     protected bool _isHovering;
-    protected Song _song;
+    protected SoundEffect _song;
 
     private MouseState _currentState;
     private MouseState _previousState;
@@ -27,7 +28,7 @@ public class Button
         _spriteHover = content.Load<Texture2D>("play_btn_hover");
         _position = new Vector2(960 - _sprite.Width / 2, 500 - _sprite.Height / 2);
         _btnRectangle = new Rectangle((int)_position.X, (int)_position.Y, _sprite.Width, _sprite.Height);
-        _song = content.Load<Song>("btn");
+        _song = content.Load<SoundEffect>("btn");
     }
     
     public bool IsClick { get; set; }
@@ -53,7 +54,7 @@ public class Button
     {
         if (EnterButton())
         {
-            MediaPlayer.Play(_song);
+            _song.Play();
             Game1.State = State.Game;
             IsClick = true;
         }
@@ -76,7 +77,7 @@ public class StoreBtn : Button
     {
         if (EnterButton())
         {
-            MediaPlayer.Play(_song);
+            _song.Play();            
             Game1.State = State.Shop;
             IsClick = true;
         }
@@ -99,7 +100,7 @@ public class ReplayBtn : Button
     {
         if (EnterButton())
         {
-            MediaPlayer.Play(_song);
+            _song.Play();
             Game1.State = State.Game;
             IsClick = true;
         }
@@ -122,7 +123,7 @@ public class BackBtn : Button
     {
         if (EnterButton())
         {
-            MediaPlayer.Play(_song);
+            _song.Play();
             Game1.State = State.MainMenu;
             IsClick = true;
         }
@@ -154,7 +155,7 @@ public class PauseBtn : Button
     {
         if (EnterButton())
         {
-            MediaPlayer.Play(_song);
+            _song.Play();
             Game1.State = State.Game;
             IsClick = true;
         }
@@ -209,7 +210,7 @@ public class PayBtn : Button
         if (EnterButton() && ((state == StateBuy.Buy && coins >= price)
                               || (state == StateBuy.Choose)))
         {
-            MediaPlayer.Play(card.PickSong);
+            card.PickSong.Play();
             IsClick = true;
         }
     }

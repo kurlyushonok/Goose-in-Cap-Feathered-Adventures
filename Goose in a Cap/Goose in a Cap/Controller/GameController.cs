@@ -157,7 +157,7 @@ public class GameController
              Keyboard.GetState().IsKeyDown(Keys.Space) ||
              Keyboard.GetState().IsKeyDown(Keys.W)) && _gameDrawer.CanJump)
         {
-            MediaPlayer.Play(_race.Character.JumpSong);
+            _race.Character.JumpSong.Play();
             _isJump = true;
             _gameDrawer.CanJump = false;
         }
@@ -193,7 +193,7 @@ public class GameController
             (_race.CharacterPosition.X + _race.Character.FrameRunWidth - _race.Character.Padding >= _gameDrawer.Let.CurrentPosition && 
              _race.CharacterPosition.X <= _gameDrawer.Let.CurrentPosition + _gameDrawer.Let.Width))
         {
-            MediaPlayer.Play(_race.GameOverSong);
+           _race.GameOverSong.Play();
             _gameDrawer.IsCollision = true;
             IsRunning = false;
             _gameDrawer.CanJump = false;
@@ -209,7 +209,7 @@ public class GameController
         {
             _race.CountCoins += 1;
             _race.Coin.CurrentPosition = _race.Coin.CountOvercomeLets();
-            MediaPlayer.Play(_race.Coin.Song);
+            _race.Coin.Song.Play();
         }
     }
 
