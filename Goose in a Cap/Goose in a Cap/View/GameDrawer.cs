@@ -1,0 +1,392 @@
+﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+namespace GooseInCap;
+
+public class GameDrawer
+{
+    private readonly Texture2D _earthTexture;
+    private readonly Texture2D _skyTexture;
+    private Texture2D _currentCharacterSprite;
+    private readonly Texture2D _scoreSprite;
+    private readonly Texture2D _mainMenuSprite;
+    private readonly Texture2D _corral;
+    private readonly Texture2D _grandmother;
+    private readonly Texture2D _shopBckg;
+    
+    private int _environmentSpeed = 10;
+    private int _maxSpeed = 17;
+    private readonly int _skySpeed = 1;
+    private readonly int _runPeriod = 75;
+    private readonly int _corralPeriod = 150;
+    private readonly int _grandmotherPeriod = 150;
+    private int _currentCorralPosition = 400;
+    private int _currentGranmotherPosition = 1000;
+
+    private Point _currentFrame = new Point(0, 0);
+    private Point _currentCharacterFrameSize;
+    private Point _currentCharacterSpriteSize;
+    private readonly Point _corralSize = new Point(2, 1);
+    private Point _currentCorralFrame = new Point(0, 0);
+    private readonly Point _grandmotherSize = new Point(2, 1);
+    private Point _currentGrandmotherFrame = new Point(0, 0);
+
+    private bool _canRun;
+    private bool _canJump = true;
+    private bool _canLand;
+
+    private readonly GenerateLets _letsGenerator;
+    private Let _let;
+    private readonly Player _player;
+
+    private readonly SpriteBatch _spriteBatch;
+
+    private readonly Texture2D _endSprite;
+
+    public GameDrawer(SpriteBatch spriteBatch, ContentManager content, Player player)
+    {
+        _spriteBatch = spriteBatch;
+        _letsGenerator = new GenerateLets(content);
+        _letsGenerator.LoadLet();
+        _endSprite = content.Load<Texture2D>("end");
+        _earthTexture = content.Load<Texture2D>("background_earth");
+        _skyTexture = content.Load<Texture2D>("background_sky");
+        _scoreSprite = content.Load<Texture2D>("score");
+        _mainMenuSprite = content.Load<Texture2D>("start_screen");
+        _corral = content.Load<Texture2D>("corral");
+        _grandmother = content.Load<Texture2D>("angry_babka");
+        _shopBckg = content.Load<Texture2D>("store_screen");
+        _player = player;
+        ContentManager = content;
+    }
+
+    public Let Let{
+        get => _let;
+        set => _let = value;
+    }
+    
+    public int BackgroundEarthPosition { get; set; }
+    public int BackgroundSkyPosition { get; set; }
+
+    public int CurrentCorralPosition
+    {
+        get => _currentCorralPosition;
+        set => _currentCorralPosition = value;
+    }
+
+    public int CurrentGrandmotherPosition
+    {
+        get => _currentGranmotherPosition;
+        set => _currentGranmotherPosition = value;
+    }
+
+    public bool IsCollision { get; set; }
+    public ContentManager ContentManager { get; private set; }
+
+    public int CurrentTime { get; set; }
+
+    public int CurrentCorralTime { get; set; }
+    public int CurrentGrandmotherTime { get; set; }
+
+    public bool CanRun
+    {
+        get => _canRun;
+        set => _canRun = value;
+    }
+    
+    public bool CanJump
+    {
+        get => _canJump;
+        set => _canJump = value;
+    }
+
+    public SpriteFont Font26 { get; set; }
+    
+    public bool CanLand
+    {
+        get => _canLand;
+        set => _canLand = value;
+    }
+
+    public void DrawMainMenu(MainMenu menu)
+    {
+        _spriteBatch.Begin();
+        
+        DrawMainMenuBckg();
+        DrawButton(menu.PlayButton);
+        DrawButton(menu.StoreButton);
+        DrawButton(menu.ClueButton);
+        
+        _spriteBatch.End();
+    }
+    
+    public void DrawGame(Race race)
+    {
+        _spriteBatch.Begin();
+        
+        DrawSky();
+        DrawEarth();
+        DrawScoreSprite();
+        if (_currentCorralPosition >= 0 - _corral.Width / 2) DrawCorral();
+        if (_currentGranmotherPosition >= 0 - _grandmother.Width / 2) DrawGrandmother();
+        DrawLet(race);
+        DrawCoin(race);
+        DrawCoinsScore(race);
+        DrawScore(race);
+        DrawRecord();
+        if (_canRun) DrawRun(race);
+        if (!_canJump) DrawJump(race);
+        if (_canLand) DrawCharacter(race);
+
+        _spriteBatch.End();
+
+        if (race.Score % 1000 == 0 && _environmentSpeed <= _maxSpeed) _environmentSpeed++;
+    }
+
+    public void DrawFinal(Final final)
+    {
+        _spriteBatch.Begin();
+        
+        DrawCollision();
+        DrawButton(final.ReplayButton);
+        DrawButton(final.BackButton);
+        
+        _spriteBatch.End();
+        
+        _environmentSpeed = 10;
+    }
+
+    public void DrawPause(Pause pause)
+    {
+        _spriteBatch.Begin();
+        
+        DrawButton(pause.PauseButton);
+
+        _spriteBatch.End();
+    }
+
+    public void DrawShop(Shop shop, Player player)
+    {
+        _spriteBatch.Begin();
+        
+        DrawShopBckg();
+        DrawCard(shop.BaseCard);
+        DrawCard(shop.FrogCard);
+        DrawCard(shop.FlowerCard);
+        DrawButton(shop.Button);
+        DrawCoinInShop(shop, player);
+        
+        _spriteBatch.End();
+    }
+
+    public void DrawClue(Clue clue)
+    {
+        _spriteBatch.Begin();
+        
+        DrawMainMenuBckg();
+        _spriteBatch.Draw(clue.Text, clue.Position, Color.White);
+        DrawButton(clue.Button);
+
+        _spriteBatch.End();
+    }
+    
+    public void DrawCharacter(Goose goose)
+    {
+        _currentCharacterSprite = goose.RunSprite;
+        _currentCharacterFrameSize = new Point(goose.FrameRunWidth, goose.FrameRunHeight);
+        _currentCharacterSpriteSize = goose.SpriteSizeRun;
+    }
+
+    public void UpdateTime(int time)
+    {
+        CurrentTime += time;
+        CurrentCorralTime += time;
+        CurrentGrandmotherTime += time;
+    }
+
+    public void ResetTime()
+    {
+        CurrentTime = 0;
+        CurrentCorralTime = 0;
+        CurrentGrandmotherTime = 0;
+    }
+
+    private void DrawMainMenuBckg()
+    {
+        _spriteBatch.Draw(_mainMenuSprite, Vector2.Zero, Color.White);
+    }
+
+    private void DrawShopBckg()
+    {
+        _spriteBatch.Draw(_shopBckg, Vector2.Zero, Color.White);
+    }
+
+    private void DrawCard(Card card)
+    {
+        _spriteBatch.Draw(card.Background, card.CardPosition, Color.White);
+        _spriteBatch.Draw(card.Button.Sprite, card.ButtonPosition, Color.White);
+    }
+
+    private void DrawCoinInShop(Shop shop, Player player)
+    {
+        _spriteBatch.Draw(shop.Coin, shop.CoinPosition, Color.White);
+        _spriteBatch.DrawString(Font26, player.CountCoins.ToString(), 
+            shop.CoinTextPosition, Color.Black);
+    }
+
+    private void DrawCorral()
+    {
+        if (CurrentCorralTime > _corralPeriod)
+        {
+            CurrentCorralTime -= _corralPeriod;
+            ++_currentCorralFrame.X;
+            if (_currentCorralFrame.X >= _corralSize.X)
+            {
+                _currentCorralFrame.X = 0;
+            }
+        }
+        var rectangle = new Rectangle(_currentCorralFrame.X * _corral.Width / 2,
+            _currentCorralFrame.Y * _corral.Height,
+            _corral.Width / 2, _corral.Height);
+        
+        _spriteBatch.Draw(_corral, new Vector2(CurrentCorralPosition, 520), 
+            rectangle, Color.White);
+        CurrentCorralPosition -= _environmentSpeed;
+    }
+    
+    private void DrawGrandmother()
+    {
+        if (CurrentGrandmotherTime > _grandmotherPeriod)
+        {
+            CurrentGrandmotherTime -= _grandmotherPeriod;
+            ++_currentGrandmotherFrame.X;
+            if (_currentGrandmotherFrame.X >= _grandmotherSize.X)
+            {
+                _currentGrandmotherFrame.X = 0;
+            }
+        }
+        var rectangle = new Rectangle(_currentGrandmotherFrame.X * _grandmother.Width / 2,
+            _currentGrandmotherFrame.Y * _grandmother.Height,
+            _grandmother.Width / 2, _grandmother.Height);
+        
+        _spriteBatch.Draw(_grandmother, new Vector2(CurrentGrandmotherPosition, 350), 
+            rectangle, Color.White);
+        CurrentGrandmotherPosition -= _environmentSpeed;
+    }
+
+    private void DrawButton(Button btn)
+    {
+        _spriteBatch.Draw(btn.Sprite, btn.Position, Color.White);
+    }
+
+    private void DrawScoreSprite()
+    {
+        _spriteBatch.Draw(_scoreSprite, new Vector2(150, 67), Color.White);
+    }
+
+    private void DrawRun(Race race)
+    {
+        if (CurrentTime > _runPeriod)
+        {
+            CurrentTime -= _runPeriod;
+            ++_currentFrame.X;
+            if (_currentFrame.X >= _currentCharacterSpriteSize.X)
+            {
+                _currentFrame.X = 0;
+            }
+        }
+        var characterRectangle = new Rectangle(_currentFrame.X * _currentCharacterFrameSize.X,
+            _currentFrame.Y * _currentCharacterFrameSize.Y,
+            _currentCharacterFrameSize.X, _currentCharacterFrameSize.Y);
+        
+        _spriteBatch.Draw(_currentCharacterSprite, race.CharacterPosition, 
+            characterRectangle, Color.White);
+    }
+
+    private void DrawJump(Race race)
+    {
+        _currentCharacterSprite = race.Character.JumpSprite;
+        _currentCharacterFrameSize = new Point(race.Character.FrameJumpWidth, race.Character.FrameJumpHeight);
+        _currentCharacterSpriteSize = race.Character.SpriteSizeJump;
+    }
+    
+    private void DrawCharacter(Race race)
+    {
+        _currentCharacterSprite = race.Character.RunSprite;
+        _currentCharacterFrameSize = new Point(race.Character.FrameRunWidth, race.Character.FrameRunHeight);
+        _currentCharacterSpriteSize = race.Character.SpriteSizeRun;
+        _canLand = false;
+    }
+    
+    private void DrawEarth()
+    {
+        _spriteBatch.Draw(_earthTexture, Vector2.Zero,
+            new Rectangle(BackgroundEarthPosition, 0, 1920, 1080),
+            Color.White);
+        if (!IsCollision) BackgroundEarthPosition += _environmentSpeed;
+        if (BackgroundEarthPosition >= 1920) BackgroundEarthPosition = 0;
+    }
+    
+    private void DrawSky()
+    {
+        _spriteBatch.Draw(_skyTexture, Vector2.Zero,
+            new Rectangle(BackgroundSkyPosition, 0, 1920, 1080),
+            Color.White);
+        if (!IsCollision) BackgroundSkyPosition += _skySpeed;
+        if (BackgroundSkyPosition >= 1920) BackgroundSkyPosition = 0;
+    }
+
+    private void DrawLet(Race race)
+    {
+        if (_let == null)
+        {
+            _let = _letsGenerator.GenerateLet();
+        }
+        var letPosition = new Vector2(_let.CurrentPosition, _let.Level);
+        _spriteBatch.Draw(_let.Sprite, letPosition, Color.White);
+        if (!IsCollision) _let.CurrentPosition -= _environmentSpeed;
+        if (_let.CurrentPosition <= (0 - _let.Sprite.Width))
+        {
+            _let.CurrentPosition = 1920;
+            _let = null;
+            race.NumberOfLetsPassed += 1;
+        }
+    }
+
+    private void DrawCollision()
+    {
+        _spriteBatch.Draw(_endSprite, new Vector2(960 - _endSprite.Width / 2, 400 - _endSprite.Height / 2), Color.White);
+    }
+    
+    private void DrawCoinsScore(Race race)
+    {
+        _spriteBatch.DrawString(spriteFont: Font26, text: race.CountCoins.ToString(), 
+            position: new Vector2(200, 60), color: Color.Black);
+    }
+
+    private void DrawScore(Race race)
+    {
+        _spriteBatch.DrawString(spriteFont: Font26, text: race.Score.ToString(), 
+            position: new Vector2(200, 93), color: Color.Black);
+    }
+
+    private void DrawRecord()
+    {
+        _spriteBatch.DrawString(spriteFont: Font26, text: _player.Record.ToString(), 
+            position: new Vector2(200, 124), color: Color.Gold);
+    }
+
+    private void DrawCoin(Race race)
+    {
+        _spriteBatch.Draw(race.Coin.Sprite, new Vector2(race.Coin.CurrentPosition, race.Coin.Level),
+            Color.White);
+        if (!IsCollision) race.Coin.CurrentPosition -= _environmentSpeed;
+        if (race.Coin.CurrentPosition <= (0 - race.Coin.Sprite.Width))
+        {
+            if (_let != null) race.Coin.CurrentPosition = race.Coin.CountOvercomeLets();
+        }
+    }
+}

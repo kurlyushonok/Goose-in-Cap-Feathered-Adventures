@@ -217,6 +217,7 @@ public class GameController
             && _race.Coin.Level <= _race.CharacterPosition.Y + _race.Character.FrameRunHeight)
         {
             _race.CountCoins += 1;
+            if (_shop.FlowerCard.IsSelected) _race.CountCoins += 1;
             _race.Coin.CurrentPosition = _race.Coin.CountOvercomeLets();
             _race.Coin.Song.Play();
         }

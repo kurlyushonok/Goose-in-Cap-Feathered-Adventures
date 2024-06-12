@@ -41,7 +41,7 @@ public class Shop
             new GooseFrog(content));
         FlowerCard = new Card(content, "goose_flower", 
             new Vector2(_startPositionCard + 2 * _distance, _cardPositionY), 
-            new Vector2(_startPositionButton + 2 * _distanceBtn, _btnPositionY), 20,
+            new Vector2(_startPositionButton + 2 * _distanceBtn, _btnPositionY), 30,
             new GooseFlower(content));
     }
 }
